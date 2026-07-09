@@ -1,0 +1,429 @@
+---
+import Countdown from './Countdown.astro';
+import RegisterButton from './RegisterButton.astro';
+import { webinar } from '../config/webinar';
+
+const painPoints = [
+  'Revenue has grown, but so has the complexity',
+  'Your team still depends on you for everything',
+  'Growth feels harder now than it used to',
+  "You can't step away without things slipping",
+  "You know the business has more potential - but you're not sure what needs to change first",
+];
+
+const walkAwayPoints = [
+  'A clearer understanding of what has been holding your business back',
+  'Greater clarity on what needs to happen next',
+  'A stronger grasp of how to grow with more structure and certainty',
+  'Exposure to a proven business building system',
+  'Mentality shifts required for serious leaders',
+  'A room full of growth-minded business owners',
+  'Access to peer collaboration with other growth-minded business owners',
+];
+
+const learnings = [
+  'Lead Generation',
+  'Sales Conversion',
+  'Repeat Business',
+  'Average Dollar per Transaction',
+  'Margin',
+  'Cash Flow',
+  'Effective Advertising',
+  'Time Management',
+  'Delivery Mastery',
+  'Mindset',
+  'Systems',
+  'Recruiting and Hiring',
+  'Management',
+  'Leadership',
+  'Business Planning',
+  'And much more..',
+];
+
+const differentiators = [
+  'A proven methodology used globally for decades',
+  'Coaching and facilitation from a Hall of Fame ActionCOACH',
+  'Real-world business growth expertise from someone who has built a successful small business, not just had a successful corporate career',
+  'Practical business education that meets owners where they are',
+  'A peer environment filled with other ambitious business owners who are serious about growth',
+];
+
+const fitPoints = [
+  'Are doing roughly $500K to $5M in annual revenue',
+  'Want to grow to $5M to $10M',
+  'Are ambitious and committed to growth',
+  'Want to become the conductor of the business, not the person playing every instrument',
+  'Know their business is capable of more',
+  'Are open to being challenged, trained, and coached',
+  'Want a better way to operate, not just more hustle',
+];
+
+const notFitPoints = [
+  'It is not for the owner who blames the market, the team, or circumstances for every unfavorable result.',
+  'It is not for someone who always has an excuse, refuses accountability, or is unwilling to confront the reality that they may be the reason the business is stuck.',
+  'It is not for the owner who still believes that working harder, staying involved in everything, and controlling more of the business is the path to the next level.',
+  'If that is how you want to operate, this is not your program.',
+];
+
+const lunchLearnOutcomes = [
+  'What it will take to become more of an owner if you want to operate like a real one',
+  'Why growth gets harder at certain stages',
+  'What keeps owners stuck',
+  'Whether 30-Day Business Owner Mastery is the right fit for you',
+];
+
+const faqs = [
+  {
+    question: 'How much time will this take?',
+    answer:
+      'Plan on 30-45 minutes per day for 30 days. The lessons are video on demand, so you can complete them on your schedule.',
+  },
+  {
+    question: 'What if I miss a day?',
+    answer:
+      'You do not have to complete every day consecutively, but you must stay caught up with the weekly lesson deadline. If you fall too far behind, you may be removed from the current cohort and invited to join a future one.',
+  },
+  {
+    question: 'How much does it cost?',
+    answer: 'The only cost is your commitment. We cover the training, coaching, and system.',
+  },
+  {
+    question: 'What are you selling?',
+    answer:
+      'We are offering exposure to a highly effective business-building approach that has changed lives and businesses for decades. If you want help implementing it afterward, there are options available. No pressure. No obligation.',
+  },
+  {
+    question: 'What if I do not want to buy anything afterward?',
+    answer: 'That is fine. Apply what you learn and send others our way.',
+  },
+];
+---
+<main class="reggie-page">
+  <section class="hero-clone">
+    <div class="container hero-clone__inner">
+      <div class="hero-clone__card">
+        <img
+          src={webinar.logoImage}
+          alt="ActionCOACH logo"
+          class="hero-clone__logo"
+          width="300"
+          height="88"
+        />
+        <h1>You've Grown Your Business. Now You Need to Grow the Owner Running It.</h1>
+        <p class="hero-clone__lead">
+          A practical 30-day intensive for business owners who have outgrown their current way of operating and are ready to break through to the next level.
+        </p>
+        <div class="hero-clone__media-frame">
+          <span class="hero-clone__sound">Enable sound</span>
+          <img
+            src={webinar.heroVideoPoster}
+            alt="Business owners gathered around a boardroom table"
+            width="1920"
+            height="1080"
+          />
+        </div>
+        <RegisterButton label="Register for Lunch and Learn" size="sm" />
+        <p class="hero-clone__small">
+          If your business is doing between $500K and $5M in annual revenue, there is a good chance you are no longer limited by effort alone.
+        </p>
+        <p class="hero-clone__small">
+          You are limited by the way the business is being led, managed, and operated.
+        </p>
+        <p class="hero-clone__small">
+          30-Day Business Owner Mastery is a free 30-day business growth intensive designed to help ambitious owners stop being the bottleneck, learn a proven operating system, and build a stronger business with more clarity, structure, and control.
+        </p>
+      </div>
+
+      <div class="hero-clone__figure">
+        <img
+          src={webinar.heroCoachImage}
+          alt="Reggie Shropshire speaking on stage"
+          width="3780"
+          height="1890"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="date-strip">
+    <div class="container">
+      <p class="date-strip__label">Event starts in</p>
+      <Countdown />
+      <p class="date-strip__date">{webinar.date}</p>
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--white white-diamonds">
+    <div class="container truth-layout">
+      <div class="truth-layout__media">
+        <img
+          src="/images/reggie/boardroom.jpg"
+          alt="Business meeting around a table"
+          width="1920"
+          height="1080"
+        />
+        <div class="truth-card">
+          <p class="truth-card__eyebrow">The Truth</p>
+          <p>Your business may have outgrown your current way of thinking, leading, and operating.</p>
+        </div>
+      </div>
+      <div class="truth-layout__copy">
+        <h2>What Got You Here Won't Get You There.</h2>
+        <p>
+          Most business owners do not get stuck because they stop working hard. They get stuck because the skills, habits, and mindset that got them to this level will not take them where they want to go next.
+        </p>
+        <p>At some point, your strengths stop covering for your weaknesses.</p>
+        <p>At some point, your team feels the drag of your constraints.</p>
+        <p>At some point, the business you built starts demanding a different kind of owner.</p>
+        <ul class="yellow-bullets">
+          {painPoints.map((point) => <li>{point}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--dark dark-angles">
+    <div class="container compact-copy">
+      <h2>The Next Level of Business Requires the Next Level of Owner.</h2>
+      <p>
+        30-Day Business Owner Mastery is built to help you make that shift.
+      </p>
+      <p>
+        In just 30-45 minutes a day for 30 days, you will be exposed to the principles, practices, and processes that help business owners build a better business using the ActionCOACH Business Operating System (ABoS) - a methodology used for more than 30 years with hundreds of thousands of businesses around the world.
+      </p>
+      <ul class="yellow-bullets">
+        <li>This is not theory.</li>
+        <li>This is practical growth.</li>
+        <li>
+          It is a structured, practical growth experience designed to help you think differently, operate differently, and grow differently.
+        </li>
+      </ul>
+      <RegisterButton label="Register for Lunch and Learn" size="sm" />
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--dark walkaway">
+    <div class="container">
+      <div class="section-heading-clone">
+        <h2>What You'll Walk Away With</h2>
+      </div>
+      <div class="walkaway-grid">
+        {walkAwayPoints.map((item, index) => (
+          <article class={`walkaway-card ${index === walkAwayPoints.length - 1 ? 'walkaway-card--full' : ''}`}>
+            <span class="walkaway-card__num">{index + 1}</span>
+            <span class="walkaway-card__divider"></span>
+            <p>{item}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--white learn-block white-diamonds">
+    <div class="container">
+      <div class="section-heading-clone section-heading-clone--center section-heading-clone--dark-text">
+        <h2>What You'll Learn</h2>
+        <p>This intensive covers the key drivers of business growth, including:</p>
+      </div>
+      <div class="learn-grid">
+        {learnings.map((item) => (
+          <div class="learn-grid__item">{item}</div>
+        ))}
+      </div>
+      <p class="learn-shell__note">
+        This is not about random tactics. It is about understanding how the whole business works together so you can lead it at a higher level.
+      </p>
+      <div class="learn-shell__cta">
+        <RegisterButton label="Register for Lunch and Learn" size="sm" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone coach-band">
+    <div class="container coach-band__inner">
+      <div class="coach-band__photo">
+        <img
+          src={webinar.heroCoachImage}
+          alt="Portrait of Reggie Shropshire"
+          width="3780"
+          height="1890"
+        />
+      </div>
+      <div class="coach-band__copy">
+        <h2>Meet Your Head Coach: Reggie Shropshire</h2>
+        <p>20 Year ActionCOACH Partner, US Marine Corps Veteran, and award-winning business leader.</p>
+        <ul class="yellow-bullets">
+          <li>2025 Inductee into the ActionCOACH Global Hall of Fame</li>
+          <li>Expert in Sales, Management, Leadership, Systems, and Team Performance</li>
+          <li>Reggie's focus: Spotting the bottlenecks holding a business back, and building a clear path through them.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone catch-strip">
+    <div class="container catch-strip__inner">
+      <h2>What's the Catch?</h2>
+      <p>There isn't one.</p>
+      <p>
+        Reggie offers this because he's confident that the owners who experience it will want to go further. When they do, he's the obvious person to help them.
+      </p>
+      <p>
+        We believe so strongly in the value of this system that we are willing to let serious business owners experience it firsthand.
+      </p>
+      <p>We are covering the cost of the training, the coaching, and the system.</p>
+      <p>
+        Your investment is your commitment: 30-45 minutes a day for 30 days, a willingness to learn, and the discipline to stay engaged.
+      </p>
+      <p>
+        And yes, if you experience the value and want help implementing what you learn, there will be opportunities to continue through our 1-to-1 coaching, group coaching, or 12-week training programs.
+      </p>
+      <p><strong>But there is no obligation to buy anything.</strong></p>
+      <p>If you take what you learn and implement it on your own, great. All we ask is that you send other serious business owners our way.</p>
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--white why-different">
+    <div class="container why-different__inner">
+      <div class="why-different__media">
+        <img
+          src={webinar.heroCoachImage}
+          alt="30-Day Business Owner Mastery visual"
+          width="3780"
+          height="1890"
+        />
+      </div>
+      <div class="why-different__copy">
+        <h2>Why This Is Different</h2>
+        <p>There is no shortage of advice for business owners.</p>
+        <p>But most of it falls into one of two categories:</p>
+        <ul class="yellow-bullets yellow-bullets--dark">
+          <li>Theory with no implementation</li>
+          <li>Motivation with no system</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container owner-mastery">
+      <h3>30-Day Business Owner Mastery is different.</h3>
+      <p>You are getting:</p>
+      <ul class="yellow-bullets yellow-bullets--dark">
+        {differentiators.map((item) => <li>{item}</li>)}
+      </ul>
+      <div class="owner-mastery__cta">
+        <RegisterButton label="Register for Lunch and Learn" size="sm" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone owners-fit">
+    <div class="container">
+      <div class="section-heading-clone section-heading-clone--center light-text">
+      <p class="mini-label">Who this is for</p>
+      <h2>This is for business owners who:</h2>
+      </div>
+      <div class="owners-fit__grid">
+        <article class="fit-card">
+          <h3>This is for business owners who:</h3>
+          <ul class="fit-list fit-list--yes">
+            {fitPoints.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+        <article class="fit-card">
+          <h3>This is not for someone looking for a quick fix.</h3>
+          <ul class="fit-list fit-list--no">
+            {notFitPoints.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--white industry-block white-diamonds">
+    <div class="container section-heading-clone section-heading-clone--center">
+      <h2>Will This Work for My Industry?</h2>
+      <div class="yes-badge">YES.</div>
+      <p>
+        The principles, practices, and processes taught in 30-Day Business Owner Mastery are universal.
+      </p>
+      <p>
+        They work across industries because they are based on how strong businesses actually grow.
+      </p>
+      <p>The better question is not whether this works for your industry.</p>
+      <p>The better question is whether you are the kind of owner who is willing to apply it.</p>
+      <div class="industry-block__cta">
+        <RegisterButton label="Register for Lunch and Learn" size="sm" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone room-block">
+    <div class="container section-heading-clone section-heading-clone--center light-text">
+      <h2>More Than Training - A Room Full of The Right People</h2>
+      <p>One of the things business owners often say during this experience is:</p>
+      <p class="room-block__quote">"I found my people."</p>
+      <p>
+        When you get in a room with other owners who are ambitious, committed, and serious about growth, something changes. You stop feeling isolated. You stop normalizing your frustrations. You start seeing what is possible. That is part of the value of this experience.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-clone section-clone--white start-block">
+    <div class="container start-block__inner">
+      <div class="section-heading-clone section-heading-clone--center">
+        <h2>Start with the Free Lunch &amp; Learn.</h2>
+        <p class="start-block__sub">The next step is simple.</p>
+        <p>
+          Join us for a free Lunch &amp; Learn at Landfall Country Club, where we will give you a preview of 30-Day Business Owner Mastery, walk through the core ideas behind the program, and show you what it takes to break through the level your business is stuck at.
+        </p>
+      </div>
+
+      <div class="start-card">
+        <img
+          src={webinar.heroCoachImage}
+          alt="30-Day Business Owner Mastery event graphic"
+          width="3780"
+          height="1890"
+        />
+        <div class="start-card__content">
+          <h3>"Lunch is on us."</h3>
+          <ul class="yellow-bullets">
+            {lunchLearnOutcomes.map((item) => <li>{item}</li>)}
+          </ul>
+          <RegisterButton label="Reserve Your Seat at the Free Lunch & Learn" size="sm" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone faq-block">
+    <div class="container">
+      <div class="section-heading-clone section-heading-clone--center">
+        <p class="mini-label">Frequently Asked Questions</p>
+        <h2>The questions serious owners ask.</h2>
+      </div>
+      <div class="faq-list faq-list--clone">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <div class="faq-answer">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-clone bottom-closer">
+    <div class="container section-heading-clone section-heading-clone--center light-text">
+      <p class="mini-label">A Better Business Starts with</p>
+      <h2>A Better Owner.</h2>
+      <p>
+        If you know your business is capable of more-but you also know the way you are operating today will not get you there-this is your invitation.
+      </p>
+      <p>
+        30-Day Business Owner Mastery was built for serious owners who are ready to stop guessing, stop spinning, and start building the next version of their business with intention.
+      </p>
+      <RegisterButton label="Register for Lunch and Learn" size="sm" />
+    </div>
+  </section>
+</main>

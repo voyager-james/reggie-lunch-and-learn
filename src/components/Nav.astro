@@ -1,0 +1,43 @@
+---
+import { webinar } from '../config/webinar';
+import RegisterButton from './RegisterButton.astro';
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+---
+<header class={`nav${showCta ? '' : ' nav--centered'}`}>
+  <div class="nav-inner">
+    <a href="/lunch-and-learn" class="nav-brand" aria-label="ActionCOACH Lunch and Learn">
+      <img
+        src={webinar.logoImage}
+        alt="ActionCOACH"
+        class="nav-logo"
+        width="1003"
+        height="248"
+        decoding="async"
+      />
+    </a>
+    {showCta && <RegisterButton size="sm" />}
+  </div>
+</header>
+
+<style is:global>
+  .nav-logo {
+    display: block;
+    height: 42px;
+    width: auto;
+  }
+
+  .nav--centered .nav-inner {
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .nav-logo {
+      height: 30px;
+    }
+  }
+</style>

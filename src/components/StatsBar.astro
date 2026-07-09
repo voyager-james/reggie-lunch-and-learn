@@ -1,0 +1,20 @@
+---
+const stats = [
+  { number: '3–10x',     label: 'Typical ROI businesses generate from well-built paid ad funnels' },
+  { number: '12–18 mo',  label: 'How long the average parent spends researching before choosing a school' },
+  { number: '6x',        label: 'More leads on the same ad spend when you swap your homepage for a dedicated landing page' },
+  { number: '$60–195k',  label: 'Lifetime revenue value of a single enrolled student' },
+];
+---
+<section class="section section--navy">
+  <div class="container">
+    <div class="stats">
+      {stats.map(s => (
+        <div class="stat">
+          <div class="stat-number">{s.number}</div>
+          <div class="stat-label" style="color: rgba(255,255,255,0.7);">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

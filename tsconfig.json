@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "types": ["node", "astro/client", "vitest/globals"]
+  },
+  "include": ["src/**/*", "astro.config.mjs", "vitest.config.mjs"]
+}

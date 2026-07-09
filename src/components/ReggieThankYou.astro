@@ -1,0 +1,95 @@
+---
+const steps = [
+  {
+    number: '1',
+    title: 'Add this event to your calendar',
+    body: "Block the time now so you don't miss it.",
+  },
+  {
+    number: '2',
+    title: 'Watch your inbox',
+    body: "You'll receive a confirmation email with the event details. We may also send a reminder as the event gets closer.",
+  },
+  {
+    number: '3',
+    title: 'Come ready to think differently',
+    body: 'This event is designed for serious business owners who know their business is capable of more and are willing to look honestly at what needs to change.',
+  },
+];
+---
+<main>
+  <section class="section thank-you-hero">
+    <div class="container narrow center">
+      <p class="eyebrow">Thank you for registering.</p>
+      <h1 class="section-title">You've taken the first step toward discovering how growth-minded business owners break through plateaus, build better systems, and lead their businesses with more clarity, control, and confidence.</h1>
+      <p class="lead thank-you-lead">
+        At this Lunch &amp; Learn, you'll get a preview of 30-Day Business Owner Mastery, a free
+        30-day business growth intensive designed for ambitious owners who are ready to stop being
+        the bottleneck and start building a business that can grow beyond their current level.
+      </p>
+      <div class="thank-you-pills">
+        <span>This is not theory.</span>
+        <span>This is not fluff.</span>
+        <span>And this is not just coaching.</span>
+      </div>
+      <p class="thank-you-copy">
+        You'll learn why strong businesses get stuck, what keeps owners trapped at their current
+        level, and what the next-level owner must do differently to create sustainable growth.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container event-details-grid">
+      <div class="content-card content-card--soft-dark">
+        <p class="eyebrow eyebrow--gold">Event Details</p>
+        <ul class="event-detail-list">
+          <li><strong>Event:</strong> The Business Owner's Unfair Advantage Lunch &amp; Learn</li>
+          <li><strong>Date:</strong> August 20th, 2026</li>
+          <li><strong>Location:</strong> Landfall Country Club</li>
+          <li><strong>Cost:</strong> Free - lunch is included</li>
+          <li><strong>Hosted By:</strong> 30-Day Business Owner Mastery / ActionCOACH</li>
+          <li><strong>Time:</strong> 11:45 am - 1:15 pm</li>
+        </ul>
+      </div>
+      <div class="content-card content-card--soft-dark">
+        <p class="eyebrow eyebrow--gold">What to Do Next</p>
+        <div class="steps-grid">
+          {steps.map((step) => (
+            <article class="step-card">
+              <div class="step-number">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white-bg">
+    <div class="container narrow center">
+      <p class="eyebrow">Know Another Business Owner Who Should Be in the Room?</p>
+      <p class="lead">
+        This Lunch &amp; Learn is for growth-minded business owners doing roughly $500K to $10M in
+        annual revenue who are serious about reaching the next level.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--yellow-bg">
+    <div class="container narrow center">
+      <p class="eyebrow">Before you go...</p>
+      <p class="quote-block">
+        Most business owners don't get stuck because they stop working hard.
+      </p>
+      <p class="quote-block">
+        They get stuck because the skills, habits, and mindset that got them to their current
+        level will not take them to the next one.
+      </p>
+      <p class="quote-block">That's what we'll be talking about on August 20th.</p>
+      <p class="quote-block">We look forward to seeing you at Landfall Country Club.</p>
+      <p class="quote-line">The next level of business requires the next level of owner.</p>
+    </div>
+  </section>
+</main>

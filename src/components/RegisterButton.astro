@@ -1,0 +1,12 @@
+---
+interface Props {
+  label?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { label = 'Register for Lunch and Learn', size = 'lg' } = Astro.props;
+const sizeClass = size === 'sm' ? 'btn--sm' : size === 'lg' ? 'btn--lg' : '';
+---
+<button type="button" class={`btn btn-primary btn--arrow ${sizeClass}`} data-register-trigger>
+  {label}
+</button>

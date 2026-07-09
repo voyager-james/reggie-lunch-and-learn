@@ -1,0 +1,124 @@
+---
+import { webinar } from '../config/webinar';
+
+const target = webinar.startsAtIso;
+---
+<div class="countdown" data-countdown data-target={target} aria-live="polite">
+  <div class="countdown-block">
+    <span class="countdown-num" data-cd-days>00</span>
+    <span class="countdown-label">Days</span>
+  </div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-block">
+    <span class="countdown-num" data-cd-hours>00</span>
+    <span class="countdown-label">Hours</span>
+  </div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-block">
+    <span class="countdown-num" data-cd-mins>00</span>
+    <span class="countdown-label">Mins</span>
+  </div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-block">
+    <span class="countdown-num" data-cd-secs>00</span>
+    <span class="countdown-label">Secs</span>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const root = document.querySelector('[data-countdown]');
+    if (!root) return;
+    const target = new Date(root.getAttribute('data-target')).getTime();
+    const els = {
+      d: root.querySelector('[data-cd-days]'),
+      h: root.querySelector('[data-cd-hours]'),
+      m: root.querySelector('[data-cd-mins]'),
+      s: root.querySelector('[data-cd-secs]'),
+    };
+    const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        els.d.textContent = '00';
+        els.h.textContent = '00';
+        els.m.textContent = '00';
+        els.s.textContent = '00';
+        return;
+      }
+      const totalSec = Math.floor(diff / 1000);
+      els.d.textContent = pad(Math.floor(totalSec / 86400));
+      els.h.textContent = pad(Math.floor((totalSec % 86400) / 3600));
+      els.m.textContent = pad(Math.floor((totalSec % 3600) / 60));
+      els.s.textContent = pad(totalSec % 60);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+<style is:global>
+  .countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0 var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .countdown-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #111111;
+    border: 2px solid rgba(255, 213, 10, 0.42);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-sm) var(--space-md);
+    min-width: 88px;
+  }
+
+  .countdown-num {
+    font-size: 44px;
+    font-weight: var(--font-weight-display);
+    color: #ffd50a;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .countdown-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.68);
+    margin-top: 6px;
+  }
+
+  .countdown-sep {
+    font-size: 36px;
+    font-weight: var(--font-weight-display);
+    color: rgba(255, 213, 10, 0.4);
+    line-height: 1;
+  }
+
+  @media (max-width: 600px) {
+    .countdown {
+      gap: 6px;
+    }
+
+    .countdown-block {
+      padding: var(--space-xs) var(--space-sm);
+      min-width: 64px;
+    }
+
+    .countdown-num {
+      font-size: 30px;
+    }
+
+    .countdown-sep {
+      font-size: 24px;
+    }
+  }
+</style>

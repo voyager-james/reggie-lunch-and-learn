@@ -1,0 +1,109 @@
+---
+import { webinar } from '../config/webinar';
+
+const fields = webinar.form.fields;
+---
+<div
+  class="popup-backdrop"
+  id="register-popup"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="register-popup-title"
+>
+  <div class="popup-card">
+    <button type="button" class="popup-close" data-register-close aria-label="Close">x</button>
+    <div class="popup-eyebrow">Free Lunch &amp; Learn</div>
+    <h2 class="popup-title" id="register-popup-title">Reserve your seat</h2>
+    <p class="popup-sub">
+      Join us at {webinar.venue} on {webinar.date}. Lunch is on us.
+    </p>
+    <form id="register-form" novalidate>
+      {fields.map((f) => (
+        <div class="form-group">
+          <label class="form-label" for={`reg-${f.name}`}>{f.label}</label>
+          <input
+            class="form-control"
+            id={`reg-${f.name}`}
+            name={f.name}
+            type={f.type}
+            required={f.required}
+            autocomplete={f.autocomplete ?? 'on'}
+            inputmode={f.name === 'phone' ? 'tel' : undefined}
+          />
+        </div>
+      ))}
+      <button type="submit" class="btn btn-primary btn--lg btn--block" data-register-submit>
+        Register for Lunch and Learn
+      </button>
+      <p class="form-error" id="register-error" style="display:none;"></p>
+      <p class="form-trust">We will use your details to confirm your seat and send reminders.</p>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const backdrop = document.getElementById('register-popup');
+    const form = document.getElementById('register-form');
+    const errorEl = document.getElementById('register-error');
+    const submitBtn = form.querySelector('[data-register-submit]');
+    let lastFocus = null;
+
+    function open(trigger) {
+      lastFocus = trigger || document.activeElement;
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const first = form.querySelector('input');
+      if (first) first.focus();
+    }
+
+    function close() {
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      errorEl.style.display = 'none';
+      errorEl.textContent = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.addEventListener('click', function(e) {
+      const trigger = e.target.closest('[data-register-trigger]');
+      if (trigger) { e.preventDefault(); open(trigger); return; }
+      if (e.target.closest('[data-register-close]')) { close(); return; }
+      if (e.target === backdrop) close();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && backdrop.getAttribute('aria-hidden') === 'false') close();
+    });
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      errorEl.style.display = 'none';
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = 'Registering...';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const body = await res.json().catch(() => ({ ok: false, error: 'Bad response' }));
+        if (res.ok && body.ok) {
+          window.location.href = '/lunch-and-learn-strategy-thank-you';
+          return;
+        }
+        throw new Error(body.error || 'Registration failed. Please try again.');
+      } catch (err) {
+        errorEl.textContent = err.message || 'Something went wrong.';
+        errorEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  })();
+</script>
