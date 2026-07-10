@@ -11,6 +11,6 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   vite: {
-    cacheDir: '.tmp-vite',
+    cacheDir: `.tmp-vite/${process.env.npm_lifecycle_event ?? 'default'}`,
   },
 });

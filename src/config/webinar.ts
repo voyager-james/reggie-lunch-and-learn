@@ -16,7 +16,9 @@ export const webinar = {
   thankYouPath: '/lunch-and-learn-strategy-thank-you',
   ghlTag: 'reggie-lunch-and-learn',
   heroVideoPoster: '/images/reggie/boardroom.jpg',
-  heroCoachImage: '/images/reggie/reggie-coach.png',
+  heroCoachImage: '/images/reggie/hero-stage.png',
+  coachPortraitImage: '/images/reggie/reggie-headshot.png',
+  masteryPosterImage: '/images/reggie/mastery-poster.png',
   logoImage: '/images/reggie/actioncoach-logo.png',
   business: {
     name: '30-Day Business Owner Mastery',
