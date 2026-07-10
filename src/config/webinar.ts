@@ -14,7 +14,6 @@ export const webinar = {
   venue: 'Landfall Country Club',
   locationLabel: 'Wilmington, NC',
   thankYouPath: '/lunch-and-learn-strategy-thank-you',
-  roleValue: 'Lunch and Learn Registrant',
   ghlTag: 'reggie-lunch-and-learn',
   heroVideoPoster: '/images/reggie/boardroom.jpg',
   heroCoachImage: '/images/reggie/reggie-coach.png',

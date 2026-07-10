@@ -5,8 +5,6 @@ export type GhlConfig = {
   baseUrl: string;
   locationId: string;
   tag: string;
-  roleFieldId: string;
-  roleValue: string;
 };
 
 export type GhlResult =
@@ -25,7 +23,6 @@ export async function createGhlContact(
     companyName: payload.businessName,
     locationId: config.locationId,
     tags: [config.tag],
-    customFields: [{ id: config.roleFieldId, field_value: config.roleValue }],
   };
 
   try {

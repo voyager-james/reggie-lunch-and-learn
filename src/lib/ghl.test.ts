@@ -7,8 +7,6 @@ describe('createGhlContact', () => {
     baseUrl: 'https://services.leadconnectorhq.com',
     locationId: 'loc_123',
     tag: 'reggie-lunch-and-learn',
-    roleFieldId: 'field_role_123',
-    roleValue: 'Lunch and Learn Registrant',
   };
 
   const payload = {
@@ -50,7 +48,6 @@ describe('createGhlContact', () => {
       companyName: 'Example Services',
       locationId: 'loc_123',
       tags: ['reggie-lunch-and-learn'],
-      customFields: [{ id: 'field_role_123', field_value: 'Lunch and Learn Registrant' }],
     });
   });
 

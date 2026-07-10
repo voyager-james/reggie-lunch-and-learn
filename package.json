@@ -10,8 +10,8 @@
     "build": "astro build",
     "preview": "astro preview --port 4323",
     "astro": "astro",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "vitest run --configLoader runner",
+    "test:watch": "vitest --configLoader runner"
   },
   "dependencies": {
     "@astrojs/vercel": "^10.0.6",

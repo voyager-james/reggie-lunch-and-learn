@@ -27,7 +27,6 @@ beforeEach(() => {
   vi.stubEnv('GHL_API_KEY', 'test-key');
   vi.stubEnv('GHL_BASE_URL', 'https://services.leadconnectorhq.com');
   vi.stubEnv('GHL_LOCATION_ID', 'loc_123');
-  vi.stubEnv('GHL_ROLE_FIELD_ID', 'field_role_123');
 });
 
 describe('POST /api/register', () => {

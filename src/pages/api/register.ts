@@ -46,10 +46,9 @@ export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.GHL_API_KEY;
   const baseUrl = import.meta.env.GHL_BASE_URL ?? 'https://services.leadconnectorhq.com';
   const locationId = import.meta.env.GHL_LOCATION_ID;
-  const roleFieldId = import.meta.env.GHL_ROLE_FIELD_ID;
 
-  if (!apiKey || !locationId || !roleFieldId) {
-    console.error('GHL_API_KEY, GHL_LOCATION_ID or GHL_ROLE_FIELD_ID is not configured');
+  if (!apiKey || !locationId) {
+    console.error('GHL_API_KEY or GHL_LOCATION_ID is not configured');
     return json(502, { ok: false, error: 'Registration is temporarily unavailable.' });
   }
 
@@ -58,8 +57,6 @@ export const POST: APIRoute = async ({ request }) => {
     baseUrl,
     locationId,
     tag: webinar.ghlTag,
-    roleFieldId,
-    roleValue: webinar.roleValue,
   });
 
   if (!result.ok) {
