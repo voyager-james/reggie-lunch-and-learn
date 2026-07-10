@@ -1261,3 +1261,486 @@ img {
     line-height: 1.45;
   }
 }
+
+/* Source page replacement pass */
+.reggie-page .section-clone {
+  padding: 44px 0;
+}
+
+.reggie-page .container {
+  max-width: 1040px;
+}
+
+.reggie-page .hero-clone {
+  padding: 22px 0 0;
+  background:
+    linear-gradient(90deg, rgba(9, 9, 9, 0.96) 0%, rgba(9, 9, 9, 0.9) 42%, rgba(9, 9, 9, 0.45) 100%),
+    url('/images/reggie/dark-room-bg.png') center/cover no-repeat;
+}
+
+.reggie-page .hero-clone__inner {
+  min-height: 620px;
+}
+
+.reggie-page .hero-clone__card {
+  width: 360px;
+  margin: 6px 0 0 74px;
+  padding: 16px 16px 18px;
+  border-radius: 8px;
+  border-color: rgba(255, 211, 27, 0.22);
+  background: rgba(13, 13, 13, 0.96);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35);
+}
+
+.reggie-page .hero-clone__logo {
+  width: 82px;
+  margin: 0 auto 10px;
+}
+
+.reggie-page .hero-clone h1 {
+  font-size: 38px;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.reggie-page .hero-clone__lead {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.reggie-page .hero-clone__media-frame {
+  margin: 14px 0 10px;
+  border-radius: 4px;
+}
+
+.reggie-page .hero-clone__sound {
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  font-size: 8px;
+}
+
+.reggie-page .hero-clone__small {
+  margin-top: 8px;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.reggie-page .hero-clone__figure {
+  right: -54px;
+  width: min(56vw, 640px);
+}
+
+.reggie-page .date-strip {
+  padding: 8px 0 6px;
+  border-bottom-width: 7px;
+}
+
+.reggie-page .date-strip__label {
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+
+.reggie-page .date-strip__date {
+  margin-top: 3px;
+  font-size: 18px;
+}
+
+.reggie-page .countdown {
+  gap: 6px;
+  margin: 6px 0 8px;
+}
+
+.reggie-page .countdown-block {
+  min-width: 42px;
+  padding: 5px 6px;
+  border-width: 1px;
+  border-radius: 0;
+}
+
+.reggie-page .countdown-num {
+  font-size: 24px;
+}
+
+.reggie-page .countdown-label {
+  margin-top: 2px;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.reggie-page .countdown-sep {
+  display: none;
+}
+
+.reggie-page .truth-layout,
+.reggie-page .coach-band__inner,
+.reggie-page .why-different__inner,
+.reggie-page .owners-fit__grid {
+  gap: 30px;
+}
+
+.reggie-page .truth-layout__copy h2,
+.reggie-page .compact-copy h2,
+.reggie-page .section-heading-clone h2,
+.reggie-page .coach-band__copy h2,
+.reggie-page .catch-strip h2,
+.reggie-page .why-different__copy h2,
+.reggie-page .owner-mastery h3 {
+  font-size: 31px;
+  line-height: 1.03;
+}
+
+.reggie-page .truth-layout__copy p,
+.reggie-page .compact-copy p,
+.reggie-page .coach-band__copy p,
+.reggie-page .catch-strip p,
+.reggie-page .why-different__copy p,
+.reggie-page .owner-mastery p,
+.reggie-page .industry-block p,
+.reggie-page .room-block p,
+.reggie-page .start-block p,
+.reggie-page .walkaway-card p,
+.reggie-page .learn-shell__note,
+.reggie-page .fit-card li {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.reggie-page .truth-card {
+  width: 210px;
+  margin: -14px 0 0 16px;
+  padding: 10px 12px;
+}
+
+.reggie-page .truth-card__eyebrow,
+.reggie-page .mini-label {
+  font-size: 8px;
+}
+
+.reggie-page .yellow-bullets,
+.reggie-page .fit-list {
+  margin-top: 12px;
+  gap: 6px;
+}
+
+.reggie-page .yellow-bullets li,
+.reggie-page .fit-list li {
+  padding-left: 14px;
+}
+
+.reggie-page .yellow-bullets li::before,
+.reggie-page .fit-list--yes li::before,
+.reggie-page .fit-list--no li::before {
+  top: 6px;
+  width: 5px;
+  height: 5px;
+}
+
+.reggie-page .compact-copy {
+  max-width: 640px;
+}
+
+.reggie-page .walkaway {
+  padding-top: 34px;
+}
+
+.reggie-page .section-heading-clone {
+  margin-bottom: 18px;
+}
+
+.reggie-page .walkaway-grid {
+  gap: 12px;
+}
+
+.reggie-page .walkaway-card {
+  min-height: 0;
+  padding: 14px 16px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.reggie-page .walkaway-card__num {
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
+}
+
+.reggie-page .walkaway-card__divider {
+  width: 0;
+}
+
+.reggie-page .learn-grid {
+  gap: 8px;
+}
+
+.reggie-page .learn-grid__item {
+  min-height: 46px;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.reggie-page .learn-shell__note {
+  margin-top: 12px;
+}
+
+.reggie-page .coach-band__photo img {
+  width: min(100%, 470px);
+  border-radius: 0;
+}
+
+.reggie-page .catch-strip__inner {
+  max-width: 670px;
+}
+
+.reggie-page .why-different__media img {
+  width: min(100%, 350px);
+  border-radius: 6px;
+}
+
+.reggie-page .owner-mastery {
+  max-width: 620px;
+  margin-top: 16px;
+}
+
+.reggie-page .fit-card {
+  padding: 16px 14px;
+  border-radius: 10px;
+}
+
+.reggie-page .fit-card h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.reggie-page .yes-badge {
+  min-width: 140px;
+  margin: 12px auto;
+  padding: 0.7rem 1.2rem;
+  font-size: 3rem;
+}
+
+.reggie-page .room-block__quote {
+  font-size: 20px;
+}
+
+.reggie-page .start-block__inner {
+  max-width: 760px;
+}
+
+.reggie-page .start-card {
+  width: min(100%, 330px);
+  margin-top: 20px;
+  border-radius: 6px;
+}
+
+.reggie-page .start-card__content {
+  padding: 16px 14px;
+}
+
+.reggie-page .start-card__content h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.reggie-page .faq-item > summary {
+  padding: 10px 12px;
+  font-size: 11px;
+}
+
+.reggie-page .faq-answer {
+  padding: 10px 12px;
+  font-size: 11px;
+}
+
+.reggie-page .bottom-closer p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .reggie-page .hero-clone__card {
+    margin-left: 26px;
+  }
+
+  .reggie-page .hero-clone__figure {
+    right: -70px;
+    width: min(56vw, 500px);
+  }
+}
+
+@media (max-width: 480px) {
+  .reggie-page .container {
+    padding: 0 10px;
+  }
+
+  .reggie-page .section-clone {
+    padding: 28px 0;
+  }
+
+  .reggie-page .hero-clone {
+    padding-top: 12px;
+  }
+
+  .reggie-page .hero-clone__inner {
+    min-height: 345px;
+  }
+
+  .reggie-page .hero-clone__card {
+    width: 162px;
+    margin: 6px 0 0 14px;
+    padding: 9px 8px 10px;
+  }
+
+  .reggie-page .hero-clone__logo {
+    width: 50px;
+    margin-bottom: 5px;
+  }
+
+  .reggie-page .hero-clone h1 {
+    font-size: 17px;
+    line-height: 1.03;
+  }
+
+  .reggie-page .hero-clone__lead {
+    margin-top: 5px;
+    font-size: 7.5px;
+    line-height: 1.32;
+  }
+
+  .reggie-page .hero-clone__media-frame {
+    margin: 7px 0 6px;
+  }
+
+  .reggie-page .hero-clone__small {
+    margin-top: 5px;
+    font-size: 6.5px;
+    line-height: 1.24;
+  }
+
+  .reggie-page .hero-clone__figure {
+    right: -20px;
+    width: 244px;
+  }
+
+  .reggie-page .date-strip {
+    padding: 7px 0 5px;
+  }
+
+  .reggie-page .date-strip__label {
+    font-size: 8px;
+  }
+
+  .reggie-page .date-strip__date {
+    font-size: 13px;
+  }
+
+  .reggie-page .countdown {
+    gap: 3px;
+    margin: 4px 0 5px;
+  }
+
+  .reggie-page .countdown-block {
+    min-width: 28px;
+    padding: 3px;
+  }
+
+  .reggie-page .countdown-num {
+    font-size: 15px;
+  }
+
+  .reggie-page .countdown-label {
+    font-size: 5px;
+  }
+
+  .reggie-page .truth-layout,
+  .reggie-page .coach-band__inner,
+  .reggie-page .why-different__inner,
+  .reggie-page .owners-fit__grid {
+    gap: 12px;
+  }
+
+  .reggie-page .truth-layout__copy h2,
+  .reggie-page .compact-copy h2,
+  .reggie-page .section-heading-clone h2,
+  .reggie-page .coach-band__copy h2,
+  .reggie-page .catch-strip h2,
+  .reggie-page .why-different__copy h2,
+  .reggie-page .owner-mastery h3 {
+    font-size: 19px;
+  }
+
+  .reggie-page .truth-layout__copy p,
+  .reggie-page .compact-copy p,
+  .reggie-page .coach-band__copy p,
+  .reggie-page .catch-strip p,
+  .reggie-page .why-different__copy p,
+  .reggie-page .owner-mastery p,
+  .reggie-page .industry-block p,
+  .reggie-page .room-block p,
+  .reggie-page .start-block p,
+  .reggie-page .walkaway-card p,
+  .reggie-page .learn-shell__note,
+  .reggie-page .fit-card li {
+    font-size: 10px;
+    line-height: 1.42;
+  }
+
+  .reggie-page .truth-card {
+    width: 112px;
+    margin: -10px 0 0 10px;
+    padding: 8px;
+  }
+
+  .reggie-page .walkaway-card {
+    padding: 10px 12px;
+  }
+
+  .reggie-page .walkaway-card__num {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .reggie-page .learn-grid__item {
+    min-height: 34px;
+    font-size: 8px;
+  }
+
+  .reggie-page .fit-card {
+    padding: 10px;
+  }
+
+  .reggie-page .fit-card h3 {
+    font-size: 11px;
+  }
+
+  .reggie-page .yes-badge {
+    min-width: 110px;
+    padding: 0.5rem 0.9rem;
+    font-size: 2rem;
+  }
+
+  .reggie-page .room-block__quote {
+    font-size: 15px;
+  }
+
+  .reggie-page .start-card {
+    width: 200px;
+  }
+
+  .reggie-page .start-card__content {
+    padding: 10px 9px;
+  }
+
+  .reggie-page .start-card__content h3 {
+    font-size: 13px;
+  }
+
+  .reggie-page .faq-item > summary,
+  .reggie-page .faq-answer,
+  .reggie-page .bottom-closer p {
+    font-size: 10px;
+  }
+}

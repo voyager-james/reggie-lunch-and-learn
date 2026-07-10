@@ -107,6 +107,30 @@ if (typeof fbq === 'function') {
 }
 </script>`;
 
+function pixelScript() {
+  const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+  if (!pixelId) return '';
+
+  return `
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('set', 'autoConfig', 'false', '${pixelId}');
+fbq('init', '${pixelId}');
+fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1" />
+</noscript>`;
+}
+
 function injectBeforeBodyEnd(html: string, injection: string) {
   if (html.includes('</body>')) {
     return html.replace('</body>', `${injection}</body>`);
@@ -136,7 +160,7 @@ export async function fetchLandingCloneHtml() {
   let html = await response.text();
   html = normalizeHtml(html);
   html = replaceThankYouLinks(html);
-  html = injectBeforeBodyEnd(html, INTERCEPT_SCRIPT);
+  html = injectBeforeBodyEnd(html, `${pixelScript()}${INTERCEPT_SCRIPT}`);
   return html;
 }
 
@@ -148,6 +172,6 @@ export async function fetchThankYouCloneHtml() {
 
   let html = await response.text();
   html = normalizeHtml(html);
-  html = injectBeforeBodyEnd(html, LEAD_SCRIPT);
+  html = injectBeforeBodyEnd(html, `${pixelScript()}${LEAD_SCRIPT}`);
   return html;
 }
