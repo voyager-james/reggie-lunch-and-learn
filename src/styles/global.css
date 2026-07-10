@@ -124,9 +124,8 @@ img {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 14% 46%, rgba(255, 211, 27, 0.12), transparent 18%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0 14%, transparent 14% 100%),
-    linear-gradient(90deg, rgba(11, 11, 11, 0.96) 0%, rgba(11, 11, 11, 0.88) 46%, rgba(11, 11, 11, 0.56) 100%);
+    linear-gradient(90deg, rgba(11, 11, 11, 0.94) 0%, rgba(11, 11, 11, 0.84) 46%, rgba(11, 11, 11, 0.48) 100%),
+    url('/images/reggie/dark-room-bg.png') center/cover no-repeat;
   padding: 28px 0 0;
 }
 
@@ -488,8 +487,8 @@ img {
 .coach-band {
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 40%, rgba(255, 211, 27, 0.16), transparent 18%),
-    linear-gradient(90deg, rgba(14, 14, 14, 0.98), rgba(14, 14, 14, 0.88));
+    linear-gradient(90deg, rgba(14, 14, 14, 0.98), rgba(14, 14, 14, 0.88)),
+    url('/images/reggie/dark-room-bg.png') center/cover no-repeat;
 }
 
 .coach-band__photo img {
@@ -497,9 +496,7 @@ img {
 }
 
 .catch-strip {
-  background:
-    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.24), transparent 18%),
-    linear-gradient(135deg, #ffe14a 0%, #ffd31b 48%, #f2bf00 100%);
+  background: url('/images/reggie/yellow-bg.png') center/cover no-repeat;
 }
 
 .catch-strip__inner {
@@ -596,13 +593,16 @@ img {
 }
 
 .section--white-bg {
-  background: #f6f6f6;
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.035) 0 8%, transparent 8% 100%),
+    linear-gradient(315deg, rgba(255, 211, 27, 0.1) 0 12%, transparent 12% 100%),
+    #f6f6f6;
+  background-size: 250px 250px, 330px 330px, auto;
+  background-position: left center, right center, center;
 }
 
 .section--yellow-bg {
-  background:
-    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.24), transparent 18%),
-    linear-gradient(135deg, #ffe14a 0%, #ffd31b 48%, #f2bf00 100%);
+  background: url('/images/reggie/yellow-bg.png') center/cover no-repeat;
 }
 
 .center {
@@ -813,15 +813,8 @@ img {
   }
 
   .hero-clone__figure {
-    right: -180px;
-    width: min(62vw, 620px);
-  }
-
-  .truth-layout,
-  .coach-band__inner,
-  .why-different__inner,
-  .owners-fit__grid {
-    grid-template-columns: 1fr;
+    right: -120px;
+    width: min(58vw, 620px);
   }
 
   .walkaway-grid,
@@ -848,26 +841,26 @@ img {
   }
 
   .hero-clone__inner {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    min-height: 430px;
+    display: block;
   }
 
   .hero-clone__card {
-    width: 100%;
-    margin: 0;
-    order: 2;
+    width: min(52%, 210px);
+    margin: 8px 0 0 12px;
+    padding: 14px 12px 16px;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-clone__figure {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    order: 1;
+    position: absolute;
+    right: -24px;
+    bottom: 0;
+    width: min(67%, 290px);
+    max-width: none;
+    margin: 0;
+    z-index: 1;
   }
 
   .hero-clone h1,
@@ -882,6 +875,35 @@ img {
     font-size: 32px;
   }
 
+  .hero-clone h1 {
+    font-size: 24px;
+    line-height: 1.03;
+  }
+
+  .hero-clone__lead {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .hero-clone__small {
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .hero-clone__logo {
+    width: 62px;
+    margin-bottom: 10px;
+  }
+
+  .hero-clone__media-frame {
+    margin: 12px 0 10px;
+  }
+
+  .hero-clone__sound {
+    font-size: 8px;
+    padding: 3px 8px;
+  }
+
   .lead,
   .thank-you-copy,
   .step-card p,
@@ -894,6 +916,35 @@ img {
 
   .event-details-grid {
     grid-template-columns: 1fr;
+  }
+
+  .truth-layout,
+  .coach-band__inner,
+  .why-different__inner,
+  .owners-fit__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    align-items: start;
+  }
+
+  .truth-layout__copy h2,
+  .coach-band__copy h2,
+  .why-different__copy h2 {
+    font-size: 22px;
+    line-height: 1.06;
+  }
+
+  .coach-band__photo img,
+  .why-different__media img {
+    width: 100%;
+  }
+
+  .fit-card {
+    padding: 14px 12px;
+  }
+
+  .fit-card h3 {
+    font-size: 16px;
   }
 
   .walkaway-grid,
