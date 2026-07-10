@@ -82,6 +82,8 @@ img {
 .section-clone {
   position: relative;
   padding: 56px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
 }
 
 .section-clone--white {
@@ -122,8 +124,9 @@ img {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(11, 11, 11, 0.94) 0%, rgba(11, 11, 11, 0.84) 46%, rgba(11, 11, 11, 0.48) 100%),
-    url('/images/reggie/dark-room-bg.png') center/cover no-repeat;
+    radial-gradient(circle at 14% 46%, rgba(255, 211, 27, 0.12), transparent 18%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0 14%, transparent 14% 100%),
+    linear-gradient(90deg, rgba(11, 11, 11, 0.96) 0%, rgba(11, 11, 11, 0.88) 46%, rgba(11, 11, 11, 0.56) 100%);
   padding: 28px 0 0;
 }
 
@@ -485,8 +488,8 @@ img {
 .coach-band {
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(14, 14, 14, 0.98), rgba(14, 14, 14, 0.88)),
-    url('/images/reggie/dark-room-bg.png') center/cover no-repeat;
+    radial-gradient(circle at 18% 40%, rgba(255, 211, 27, 0.16), transparent 18%),
+    linear-gradient(90deg, rgba(14, 14, 14, 0.98), rgba(14, 14, 14, 0.88));
 }
 
 .coach-band__photo img {
@@ -494,7 +497,9 @@ img {
 }
 
 .catch-strip {
-  background: url('/images/reggie/yellow-bg.png') center/cover no-repeat;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.24), transparent 18%),
+    linear-gradient(135deg, #ffe14a 0%, #ffd31b 48%, #f2bf00 100%);
 }
 
 .catch-strip__inner {
@@ -577,6 +582,162 @@ img {
   background:
     linear-gradient(180deg, rgba(17, 17, 17, 0.9), rgba(17, 17, 17, 0.9)),
     url('/images/reggie/group-photo.jpg') center/cover no-repeat;
+}
+
+.section {
+  padding: 56px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
+}
+
+.section--dark {
+  background: #111111;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section--white-bg {
+  background: #f6f6f6;
+}
+
+.section--yellow-bg {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.24), transparent 18%),
+    linear-gradient(135deg, #ffe14a 0%, #ffd31b 48%, #f2bf00 100%);
+}
+
+.center {
+  text-align: center;
+}
+
+.narrow {
+  max-width: 860px;
+}
+
+.eyebrow {
+  margin-bottom: 10px;
+  color: var(--color-gold-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eyebrow--gold {
+  color: var(--color-gold);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1.08;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.lead,
+.thank-you-copy,
+.step-card p,
+.event-detail-list,
+.quote-block,
+.quote-line {
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.thank-you-hero {
+  background: linear-gradient(180deg, #f7f7f7 0%, #ededed 100%);
+}
+
+.thank-you-lead,
+.thank-you-copy {
+  margin-top: 18px;
+  color: #2a2a2a;
+}
+
+.thank-you-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.thank-you-pills span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.event-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.content-card {
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.content-card--soft-dark {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.event-detail-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.event-detail-list li + li {
+  margin-top: 10px;
+}
+
+.steps-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.step-card {
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.step-number {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-gold);
+  color: #111111;
+  font-family: var(--font-display);
+  font-size: 22px;
+}
+
+.step-card h3 {
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.quote-block + .quote-block,
+.quote-line {
+  margin-top: 14px;
+}
+
+.quote-line {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: #111111;
 }
 
 .room-block__quote {
@@ -678,6 +839,10 @@ img {
     padding: 42px 0;
   }
 
+  .section {
+    padding: 42px 0;
+  }
+
   .hero-clone {
     padding-top: 20px;
   }
@@ -706,6 +871,7 @@ img {
   }
 
   .hero-clone h1,
+  .section-title,
   .truth-layout__copy h2,
   .compact-copy h2,
   .section-heading-clone h2,
@@ -714,6 +880,20 @@ img {
   .why-different__copy h2,
   .owner-mastery h3 {
     font-size: 32px;
+  }
+
+  .lead,
+  .thank-you-copy,
+  .step-card p,
+  .event-detail-list,
+  .quote-block,
+  .quote-line {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .event-details-grid {
+    grid-template-columns: 1fr;
   }
 
   .walkaway-grid,

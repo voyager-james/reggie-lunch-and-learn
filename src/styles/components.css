@@ -98,7 +98,6 @@
   justify-content: center;
   padding: 20px;
   background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(4px);
   z-index: 999;
 }
 
@@ -231,7 +230,6 @@
   z-index: 100;
   background: rgba(10, 10, 10, 0.94);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
 }
 
 .nav-inner {

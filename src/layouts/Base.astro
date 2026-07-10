@@ -6,11 +6,15 @@ import MetaPixel from '../components/MetaPixel.astro';
 interface Props {
   title: string;
   description?: string;
+  trackLead?: boolean;
+  enableClarity?: boolean;
 }
 
 const {
   title,
   description = 'Free Lunch & Learn for ambitious business owners ready to grow beyond their current operating level.',
+  trackLead = false,
+  enableClarity = false,
 } = Astro.props;
 ---
 <!doctype html>
@@ -23,7 +27,7 @@ const {
     <link rel="preconnect" href="https://connect.facebook.net" />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
-    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+    {enableClarity && <link rel="dns-prefetch" href="https://www.clarity.ms" />}
     <link
       rel="preload"
       as="font"
@@ -34,25 +38,40 @@ const {
     <title>{title}</title>
     <slot name="head" />
     <MetaPixel />
-    <script is:inline>
-      (function(){
-        var loaded = false;
-        function loadClarity(){
-          if (loaded) return; loaded = true;
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "wrmbsfmyay");
-        }
-        if (document.readyState === 'complete') setTimeout(loadClarity, 1500);
-        else window.addEventListener('load', function(){ setTimeout(loadClarity, 1500); }, { once: true });
-        var opts = { once: true, passive: true, capture: true };
-        ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
-          window.addEventListener(ev, loadClarity, opts);
-        });
-      })();
-    </script>
+    {trackLead && (
+      <script is:inline>
+        {`if (typeof window.fbq === 'function') { window.fbq('track', 'Lead', { content_name: 'Lunch and Learn Registration' }); }`}
+      </script>
+    )}
+    {enableClarity && (
+      <script is:inline>
+        {`(function(){
+          var loaded = false;
+          function loadClarity(){
+            if (loaded) return;
+            loaded = true;
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "wrmbsfmyay");
+          }
+          function queueLoad(){
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(loadClarity, { timeout: 12000 });
+            } else {
+              window.setTimeout(loadClarity, 8000);
+            }
+          }
+          if (document.readyState === 'complete') queueLoad();
+          else window.addEventListener('load', queueLoad, { once: true });
+          var opts = { once: true, passive: true, capture: true };
+          ['pointerdown','keydown'].forEach(function(ev){
+            window.addEventListener(ev, loadClarity, opts);
+          });
+        })();`}
+      </script>
+    )}
   </head>
   <body>
     <slot />
