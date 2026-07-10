@@ -976,3 +976,288 @@ img {
     width: min(100%, 270px);
   }
 }
+
+@media (max-width: 480px) {
+  .nav-inner {
+    height: 48px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .nav-logo {
+    height: 22px;
+  }
+
+  .btn {
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 9px;
+    letter-spacing: 0.02em;
+    box-shadow: none;
+  }
+
+  .btn--sm {
+    padding: 7px 10px;
+    font-size: 8px;
+  }
+
+  .hero-clone {
+    padding-top: 14px;
+  }
+
+  .hero-clone__inner {
+    min-height: 330px;
+  }
+
+  .hero-clone__card {
+    width: 170px;
+    margin: 4px 0 0 26px;
+    padding: 10px 9px 12px;
+    border-radius: 8px;
+  }
+
+  .hero-clone__logo {
+    width: 56px;
+    margin-bottom: 6px;
+  }
+
+  .hero-clone h1 {
+    font-size: 18px;
+    line-height: 1.04;
+  }
+
+  .hero-clone__lead {
+    margin-top: 6px;
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .hero-clone__media-frame {
+    margin: 8px 0 7px;
+    border-radius: 4px;
+  }
+
+  .hero-clone__sound {
+    top: 6px;
+    left: 6px;
+    padding: 2px 6px;
+    font-size: 6px;
+  }
+
+  .hero-clone__small {
+    margin-top: 6px;
+    font-size: 6.8px;
+    line-height: 1.28;
+  }
+
+  .hero-clone__figure {
+    right: -56px;
+    width: 272px;
+  }
+
+  .date-strip {
+    padding: 8px 0 6px;
+    border-bottom-width: 6px;
+  }
+
+  .date-strip__label {
+    margin-bottom: 2px;
+    font-size: 9px;
+  }
+
+  .date-strip__date {
+    margin-top: 2px;
+    font-size: 14px;
+  }
+
+  .countdown {
+    gap: 4px;
+    margin: 4px 0 6px;
+  }
+
+  .countdown-block {
+    min-width: 32px;
+    padding: 3px 4px;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .countdown-num {
+    font-size: 17px;
+  }
+
+  .countdown-label {
+    margin-top: 2px;
+    font-size: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  .countdown-sep {
+    display: none;
+  }
+
+  .section-clone {
+    padding: 26px 0;
+  }
+
+  .section-heading-clone {
+    margin-bottom: 16px;
+  }
+
+  .truth-layout,
+  .coach-band__inner,
+  .why-different__inner,
+  .owners-fit__grid {
+    gap: 12px;
+  }
+
+  .truth-layout__copy h2,
+  .compact-copy h2,
+  .section-heading-clone h2,
+  .coach-band__copy h2,
+  .catch-strip h2,
+  .why-different__copy h2,
+  .owner-mastery h3 {
+    font-size: 20px;
+    line-height: 1.05;
+  }
+
+  .truth-layout__copy p,
+  .compact-copy p,
+  .coach-band__copy p,
+  .catch-strip p,
+  .why-different__copy p,
+  .owner-mastery p,
+  .industry-block p,
+  .room-block p,
+  .start-block p,
+  .walkaway-card p,
+  .learn-shell__note,
+  .fit-card li {
+    font-size: 10px;
+    line-height: 1.42;
+  }
+
+  .truth-card {
+    width: 110px;
+    margin: -10px 0 0 10px;
+    padding: 8px 9px;
+  }
+
+  .truth-card__eyebrow,
+  .mini-label {
+    font-size: 7px;
+  }
+
+  .yellow-bullets,
+  .fit-list {
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .yellow-bullets li,
+  .fit-list li {
+    padding-left: 12px;
+  }
+
+  .yellow-bullets li::before,
+  .fit-list--yes li::before,
+  .fit-list--no li::before {
+    top: 5px;
+    width: 5px;
+    height: 5px;
+  }
+
+  .walkaway {
+    padding-top: 24px;
+  }
+
+  .walkaway-grid {
+    gap: 10px;
+  }
+
+  .walkaway-card {
+    min-height: 0;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: 8px;
+  }
+
+  .walkaway-card__num {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .walkaway-card__divider {
+    width: 0;
+  }
+
+  .learn-grid {
+    gap: 6px;
+  }
+
+  .learn-grid__item {
+    min-height: 34px;
+    padding: 0 8px;
+    border-radius: 4px;
+    font-size: 8px;
+  }
+
+  .coach-band__photo img,
+  .why-different__media img {
+    border-radius: 6px;
+  }
+
+  .fit-card {
+    padding: 10px 10px 12px;
+    border-radius: 10px;
+  }
+
+  .fit-card h3 {
+    margin-bottom: 8px;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .yes-badge {
+    min-width: 120px;
+    margin: 10px auto;
+    padding: 0.55rem 1rem;
+    font-size: 2rem;
+  }
+
+  .room-block__quote {
+    font-size: 15px;
+  }
+
+  .start-card {
+    width: 190px;
+    margin-top: 18px;
+  }
+
+  .start-card__content {
+    padding: 12px 10px;
+  }
+
+  .start-card__content h3 {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .faq-item > summary {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .faq-answer {
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .bottom-closer p {
+    font-size: 10px;
+    line-height: 1.45;
+  }
+}
