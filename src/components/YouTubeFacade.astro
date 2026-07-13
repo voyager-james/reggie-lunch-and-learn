@@ -1,23 +1,25 @@
 ---
-import { Image } from 'astro:assets';
-import thumbnail from '../assets/images/reggie/youtube-19_vnBxi2QQ.jpg';
+import { Picture } from 'astro:assets';
+import thumbnail from '../assets/images/reggie/youtube-wm9ym-L2i8Q.jpg';
 import { webinar } from '../config/webinar';
 
 interface Props {
   title?: string;
 }
 
-const { title = 'Play 30-Day Business Owner Mastery overview video' } = Astro.props;
+const { title = 'Play Why Business Owners Get Stuck and How to Break Through' } = Astro.props;
 const embedSrc = `https://www.youtube-nocookie.com/embed/${webinar.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
 ---
 <div class="youtube-facade" data-youtube-facade data-src={embedSrc} data-title={title}>
-  <Image
+  <Picture
     src={thumbnail}
-    alt="Video thumbnail for 30-Day Business Owner Mastery"
-    widths={[320, 480, 640, 960]}
+    alt="Why Business Owners Get Stuck and How to Break Through video thumbnail"
+    widths={[320, 480, 640, 720, 768, 960]}
     sizes="(max-width: 720px) calc(100vw - 32px), 520px"
+    formats={['avif', 'webp']}
+    quality={70}
     loading="eager"
-    decoding="async"
+    decoding="sync"
     fetchpriority="high"
     class="youtube-facade__image"
   />

@@ -3,7 +3,6 @@ import { webinar } from '../config/webinar';
 import { COUNTRIES } from '../data/countries';
 
 const countries = COUNTRIES;
-const countriesJson = JSON.stringify(countries);
 const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((letter) => 127397 + letter.charCodeAt(0)));
 ---
 <dialog
@@ -11,7 +10,6 @@ const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((
   id="register-popup"
   aria-labelledby="register-popup-title"
   aria-describedby="register-popup-description"
-  data-countries={countriesJson}
   data-thank-you-path={webinar.thankYouPath}
 >
   <div class="popup-card">
@@ -38,16 +36,7 @@ const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((
         <label class="form-label" for="reg-phone">Phone</label>
         <div class="phone-field">
           <select class="form-control phone-field__country" id="reg-country" data-country-select aria-label="Country code">
-            {countries.map((country) => (
-              <option
-                value={country.iso}
-                data-dial={country.dial}
-                selected={country.iso === 'US'}
-                title={`${country.name} +${country.dial}`}
-              >
-                {countryFlag(country.iso)} +{country.dial}
-              </option>
-            ))}
+            <option value="US" data-dial="1" selected title="United States +1">{countryFlag('US')} +1</option>
           </select>
           <input class="form-control phone-field__number" id="reg-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required maxlength="40" />
         </div>
@@ -69,16 +58,17 @@ const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((
   </div>
 </dialog>
 
-<script is:inline>
+<script is:inline define:vars={{ countryData: countries }}>
   (function() {
     const dialog = document.getElementById('register-popup');
-    const countries = JSON.parse(dialog.dataset.countries || '[]');
+    const countries = countryData;
     const thankYouPath = dialog.dataset.thankYouPath || '/lunch-and-learn-thank';
     const form = document.getElementById('register-form');
     const errorEl = document.getElementById('register-error');
     const submitBtn = form.querySelector('[data-register-submit]');
     const countrySelect = form.querySelector('[data-country-select]');
     let lastFocus = null;
+    let countryOptionsLoaded = false;
 
     const fields = {
       fullName: form.elements.fullName,
@@ -97,6 +87,24 @@ const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((
 
     function selectedCountry() {
       return countries.find((country) => country.iso === countrySelect.value) || countries.find((country) => country.iso === 'US') || countries[0];
+    }
+
+    function loadCountryOptions() {
+      if (countryOptionsLoaded) return;
+      const fragment = document.createDocumentFragment();
+      countries.forEach(function(country) {
+        const option = document.createElement('option');
+        option.value = country.iso;
+        option.dataset.dial = country.dial;
+        option.title = country.name + ' +' + country.dial;
+        option.textContent = String.fromCodePoint(...country.iso.split('').map(function(letter) {
+          return 127397 + letter.charCodeAt(0);
+        })) + ' +' + country.dial;
+        fragment.appendChild(option);
+      });
+      countrySelect.replaceChildren(fragment);
+      countrySelect.value = 'US';
+      countryOptionsLoaded = true;
     }
 
     function normalizePhone(value) {
@@ -147,6 +155,7 @@ const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((
 
     function open(trigger) {
       lastFocus = trigger || document.activeElement;
+      loadCountryOptions();
       dialog.showModal();
       document.body.style.overflow = 'hidden';
       countrySelect.value = countrySelect.value || 'US';

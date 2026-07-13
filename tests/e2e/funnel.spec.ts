@@ -27,9 +27,9 @@ test('landing page loads Facebook immediately and avoids GHL and YouTube before 
   expect(requests.filter((url) => youtubeHosts.test(url))).toEqual([]);
 
   const youtubeRequest = page.waitForRequest((request) =>
-    request.url().includes('youtube-nocookie.com/embed/19_vnBxi2QQ'),
+    request.url().includes('youtube-nocookie.com/embed/wm9ym-L2i8Q'),
   );
-  await page.getByRole('button', { name: /play 30-day business owner mastery/i }).click();
+  await page.getByRole('button', { name: /play why business owners get stuck/i }).click();
   await youtubeRequest;
 });
 

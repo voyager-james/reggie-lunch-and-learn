@@ -1,11 +1,3 @@
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 300 800;
-  font-display: swap;
-  src: url('/fonts/open-sans-latin.woff2') format('woff2');
-}
-
 :root {
   --color-gold: #ffd31b;
   --color-gold-deep: #775c00;
@@ -18,7 +10,7 @@
   --color-paper: #f4f4f4;
   --color-line: rgba(17, 17, 17, 0.1);
 
-  --font-body: 'Open Sans', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
   --font-display: 'Arial Black', 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
 
   --max-width-content: 1180px;

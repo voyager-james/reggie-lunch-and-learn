@@ -1,4 +1,8 @@
 ---
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '@fontsource/poppins/latin-700.css';
 import '../styles/global.css';
 import '../styles/components.css';
 import '../styles/actioncoach.css';
@@ -47,23 +51,10 @@ const clarityScript = `(function(){
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://connect.facebook.net" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
     {enableClarity && <link rel="dns-prefetch" href="https://www.clarity.ms" />}
     <MetaPixel />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="/fonts/open-sans-latin.woff2"
-      crossorigin
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    />
     <title>{title}</title>
     <slot name="head" />
     {enableClarity && clarityId && <script is:inline set:html={clarityScript}></script>}

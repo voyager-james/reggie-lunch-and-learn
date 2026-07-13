@@ -16,7 +16,7 @@ export const webinar = {
   locationLabel: 'Wilmington, NC',
   thankYouPath: '/lunch-and-learn-thank',
   ghlTag: 'lunch and learn: registered',
-  youtubeId: '19_vnBxi2QQ',
+  youtubeId: 'wm9ym-L2i8Q',
   business: {
     name: '30-Day Business Owner Mastery',
     tagline: 'The next level of business requires the next level of owner.',
