@@ -1,21 +1,43 @@
 ---
 import '../styles/global.css';
 import '../styles/components.css';
+import '../styles/actioncoach.css';
 import MetaPixel from '../components/MetaPixel.astro';
 
 interface Props {
   title: string;
   description?: string;
-  trackLead?: boolean;
   enableClarity?: boolean;
 }
 
 const {
   title,
   description = 'Free Lunch & Learn for ambitious business owners ready to grow beyond their current operating level.',
-  trackLead = false,
   enableClarity = false,
 } = Astro.props;
+
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID || 'xb8s5tf5lm';
+const clarityScript = `(function(){
+  var loaded = false;
+  function loadClarity(){
+    if (loaded) return;
+    loaded = true;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "${clarityId}");
+  }
+  function queueLoad(){
+    window.setTimeout(loadClarity, 15000);
+  }
+  if (document.readyState === 'complete') queueLoad();
+  else window.addEventListener('load', queueLoad, { once: true });
+  var opts = { once: true, passive: true, capture: true };
+  ['pointerdown','keydown'].forEach(function(ev){
+    window.addEventListener(ev, loadClarity, opts);
+  });
+})();`;
 ---
 <!doctype html>
 <html lang="en">
@@ -25,9 +47,12 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://connect.facebook.net" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
     {enableClarity && <link rel="dns-prefetch" href="https://www.clarity.ms" />}
+    <MetaPixel />
     <link
       rel="preload"
       as="font"
@@ -35,43 +60,13 @@ const {
       href="/fonts/open-sans-latin.woff2"
       crossorigin
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
     <title>{title}</title>
     <slot name="head" />
-    <MetaPixel />
-    {trackLead && (
-      <script is:inline>
-        {`if (typeof window.fbq === 'function') { window.fbq('track', 'Lead', { content_name: 'Lunch and Learn Registration' }); }`}
-      </script>
-    )}
-    {enableClarity && (
-      <script is:inline>
-        {`(function(){
-          var loaded = false;
-          function loadClarity(){
-            if (loaded) return;
-            loaded = true;
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "wrmbsfmyay");
-          }
-          function queueLoad(){
-            if ('requestIdleCallback' in window) {
-              window.requestIdleCallback(loadClarity, { timeout: 12000 });
-            } else {
-              window.setTimeout(loadClarity, 8000);
-            }
-          }
-          if (document.readyState === 'complete') queueLoad();
-          else window.addEventListener('load', queueLoad, { once: true });
-          var opts = { once: true, passive: true, capture: true };
-          ['pointerdown','keydown'].forEach(function(ev){
-            window.addEventListener(ev, loadClarity, opts);
-          });
-        })();`}
-      </script>
-    )}
+    {enableClarity && clarityId && <script is:inline set:html={clarityScript}></script>}
   </head>
   <body>
     <slot />

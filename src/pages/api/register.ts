@@ -5,6 +5,13 @@ import { webinar, type RegistrationPayload } from '../../config/webinar';
 export const prerender = false;
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
+const PHONE_RE = /^\+[1-9]\d{6,14}$/;
+const MAX_LENGTHS = {
+  fullName: 120,
+  email: 254,
+  phone: 16,
+  businessName: 140,
+} as const;
 
 function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), {
@@ -23,10 +30,11 @@ function validate(input: unknown): RegistrationPayload | null {
     const v = o[key];
     if (typeof v !== 'string') return null;
     const trimmed = v.trim().replace(/\s+/g, ' ');
-    if (trimmed.length === 0) return null;
+    if (trimmed.length === 0 || trimmed.length > MAX_LENGTHS[key]) return null;
     out[key] = trimmed;
   }
   if (!EMAIL_RE.test(out.email)) return null;
+  if (!PHONE_RE.test(out.phone)) return null;
   return out as RegistrationPayload;
 }
 

@@ -3,6 +3,10 @@ dist/
 .vercel/
 .astro/
 .tmp-vite/
+.tmp-vitest/
+.tmp-screens/
+playwright-report/
+test-results/
 
 # dependencies
 node_modules/

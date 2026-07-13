@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import thumbnail from '../assets/images/reggie/youtube-19_vnBxi2QQ.jpg';
+import { webinar } from '../config/webinar';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Play 30-Day Business Owner Mastery overview video' } = Astro.props;
+const embedSrc = `https://www.youtube-nocookie.com/embed/${webinar.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+---
+<div class="youtube-facade" data-youtube-facade data-src={embedSrc} data-title={title}>
+  <Image
+    src={thumbnail}
+    alt="Video thumbnail for 30-Day Business Owner Mastery"
+    widths={[320, 480, 640, 960]}
+    sizes="(max-width: 720px) calc(100vw - 32px), 520px"
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+    class="youtube-facade__image"
+  />
+  <button type="button" class="youtube-facade__button" aria-label={title}>
+    <span class="youtube-facade__play" aria-hidden="true"></span>
+  </button>
+  <span class="hero-clone__sound">Enable sound</span>
+</div>
+
+<script is:inline>
+  (function() {
+    document.addEventListener('click', function(event) {
+      const button = event.target.closest('.youtube-facade__button');
+      if (!button) return;
+
+      const root = button.closest('[data-youtube-facade]');
+      if (!root || root.dataset.loaded === 'true') return;
+      root.dataset.loaded = 'true';
+
+      const iframe = document.createElement('iframe');
+      iframe.src = root.dataset.src;
+      iframe.title = root.dataset.title || 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.loading = 'eager';
+      iframe.className = 'youtube-facade__iframe';
+
+      root.replaceChildren(iframe);
+      iframe.focus();
+    });
+  })();
+</script>

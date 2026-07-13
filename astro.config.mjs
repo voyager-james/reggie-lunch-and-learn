@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 import vercel from '@astrojs/vercel';
 
@@ -10,7 +10,28 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
+  env: {
+    schema: {
+      GHL_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      GHL_BASE_URL: envField.string({
+        context: 'server',
+        access: 'secret',
+        default: 'https://services.leadconnectorhq.com',
+      }),
+      GHL_LOCATION_ID: envField.string({ context: 'server', access: 'secret', optional: true }),
+      PUBLIC_META_PIXEL_ID: envField.string({
+        context: 'client',
+        access: 'public',
+        default: '696932649599462',
+      }),
+      PUBLIC_CLARITY_ID: envField.string({
+        context: 'client',
+        access: 'public',
+        default: 'xb8s5tf5lm',
+      }),
+    },
+  },
   vite: {
-    cacheDir: `.tmp-vite/${process.env.npm_lifecycle_event ?? 'default'}`,
+    cacheDir: '.tmp-vite/default',
   },
 });

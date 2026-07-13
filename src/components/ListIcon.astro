@@ -1,0 +1,12 @@
+---
+import { Check, X } from '@lucide/astro';
+
+interface Props {
+  kind?: 'check' | 'cross';
+}
+
+const { kind = 'check' } = Astro.props;
+---
+<span class={`list-icon list-icon--${kind}`} aria-hidden="true">
+  {kind === 'cross' ? <X size={21} stroke-width={3} /> : <Check size={21} stroke-width={3} />}
+</span>

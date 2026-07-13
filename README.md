@@ -1,43 +1,39 @@
-# Astro Starter Kit: Minimal
+# Reggie Lunch & Learn Astro Funnel
+
+Native Astro 6 implementation of the Lunch & Learn funnel for Reggie Shropshire / ActionCOACH.
+
+## Routes
+
+- `/` permanently redirects to `/lunch-and-learn`
+- `/lunch-and-learn` is the prerendered landing page
+- `/lunch-and-learn-thank` is the prerendered thank-you page
+- `/api/register` is the server-rendered GoHighLevel registration endpoint
+- `/api/geo` returns Vercel country geolocation with a US fallback
+
+## Tracking and Performance
+
+Meta Pixel is intentionally bootstrapped early in the document head on both marketing pages. It is not delayed for Lighthouse. Microsoft Clarity loads after the page has rendered. The YouTube video uses a local Astro-optimized thumbnail facade and does not request YouTube resources until the play button is clicked.
+
+## Environment
+
+Copy `.env.example` values into the Vercel project settings:
 
 ```sh
-npm create astro@latest -- --template minimal
+GHL_API_KEY=
+GHL_BASE_URL=https://services.leadconnectorhq.com
+GHL_LOCATION_ID=
+PUBLIC_META_PIXEL_ID=696932649599462
+PUBLIC_CLARITY_ID=xb8s5tf5lm
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run astro -- sync
+npm run astro -- check
+npm test
+npm run test:e2e
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The project targets Node `24.x` to match Vercel.

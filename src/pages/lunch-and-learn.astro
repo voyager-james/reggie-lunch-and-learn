@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import ReggieLandingPage from '../components/ReggieLandingPage.astro';
+import RegisterPopup from '../components/RegisterPopup.astro';
+import Footer from '../components/Footer.astro';
+import heroStageBg from '../assets/images/reggie/backgrounds/hero-stage-bg.webp';
+
+export const prerender = true;
+---
+<Base
+  title="Lunch & Learn | 30-Day Business Owner Mastery"
+  description="A free Lunch & Learn for ambitious business owners in Wilmington, NC who are ready to grow with more structure, clarity, and control."
+  enableClarity
+>
+  <link slot="head" rel="preload" as="image" href={heroStageBg.src} fetchpriority="high" />
+  <Nav />
+  <ReggieLandingPage />
+  <RegisterPopup />
+  <Footer />
+</Base>

@@ -1,106 +1,234 @@
 ---
 import { webinar } from '../config/webinar';
+import { COUNTRIES } from '../data/countries';
 
-const fields = webinar.form.fields;
+const countries = COUNTRIES;
+const countriesJson = JSON.stringify(countries);
+const countryFlag = (iso: string) => String.fromCodePoint(...iso.split('').map((letter) => 127397 + letter.charCodeAt(0)));
 ---
-<div
-  class="popup-backdrop"
+<dialog
+  class="popup-dialog"
   id="register-popup"
-  aria-hidden="true"
-  role="dialog"
-  aria-modal="true"
   aria-labelledby="register-popup-title"
+  aria-describedby="register-popup-description"
+  data-countries={countriesJson}
+  data-thank-you-path={webinar.thankYouPath}
 >
   <div class="popup-card">
     <button type="button" class="popup-close" data-register-close aria-label="Close">x</button>
     <div class="popup-eyebrow">Free Lunch &amp; Learn</div>
     <h2 class="popup-title" id="register-popup-title">Reserve your seat</h2>
-    <p class="popup-sub">
+    <p class="popup-sub" id="register-popup-description">
       Join us at {webinar.venue} on {webinar.date}. Lunch is on us.
     </p>
     <form id="register-form" novalidate>
-      {fields.map((f) => (
-        <div class="form-group">
-          <label class="form-label" for={`reg-${f.name}`}>{f.label}</label>
-          <input
-            class="form-control"
-            id={`reg-${f.name}`}
-            name={f.name}
-            type={f.type}
-            required={f.required}
-            autocomplete={f.autocomplete ?? 'on'}
-            inputmode={f.name === 'phone' ? 'tel' : undefined}
-          />
+      <div class="form-group">
+        <label class="form-label" for="reg-fullName">Full Name</label>
+        <input class="form-control" id="reg-fullName" name="fullName" type="text" autocomplete="name" required maxlength="120" />
+        <p class="field-error" id="reg-fullName-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="reg-email">Email</label>
+        <input class="form-control" id="reg-email" name="email" type="email" autocomplete="email" required maxlength="254" />
+        <p class="field-error" id="reg-email-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="reg-phone">Phone</label>
+        <div class="phone-field">
+          <select class="form-control phone-field__country" id="reg-country" data-country-select aria-label="Country code">
+            {countries.map((country) => (
+              <option
+                value={country.iso}
+                data-dial={country.dial}
+                selected={country.iso === 'US'}
+                title={`${country.name} +${country.dial}`}
+              >
+                {countryFlag(country.iso)} +{country.dial}
+              </option>
+            ))}
+          </select>
+          <input class="form-control phone-field__number" id="reg-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required maxlength="40" />
         </div>
-      ))}
+        <p class="field-error" id="reg-phone-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="reg-businessName">Business Name</label>
+        <input class="form-control" id="reg-businessName" name="businessName" type="text" autocomplete="organization" required maxlength="140" />
+        <p class="field-error" id="reg-businessName-error"></p>
+      </div>
+
       <button type="submit" class="btn btn-primary btn--lg btn--block" data-register-submit>
         Register for Lunch and Learn
       </button>
-      <p class="form-error" id="register-error" style="display:none;"></p>
+      <p class="form-error" id="register-error" hidden></p>
       <p class="form-trust">We will use your details to confirm your seat and send reminders.</p>
     </form>
   </div>
-</div>
+</dialog>
 
 <script is:inline>
   (function() {
-    const backdrop = document.getElementById('register-popup');
+    const dialog = document.getElementById('register-popup');
+    const countries = JSON.parse(dialog.dataset.countries || '[]');
+    const thankYouPath = dialog.dataset.thankYouPath || '/lunch-and-learn-thank';
     const form = document.getElementById('register-form');
     const errorEl = document.getElementById('register-error');
     const submitBtn = form.querySelector('[data-register-submit]');
+    const countrySelect = form.querySelector('[data-country-select]');
     let lastFocus = null;
+
+    const fields = {
+      fullName: form.elements.fullName,
+      email: form.elements.email,
+      phone: form.elements.phone,
+      businessName: form.elements.businessName,
+    };
+
+    function setFieldError(name, message) {
+      const el = document.getElementById('reg-' + name + '-error');
+      fields[name].setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (message) fields[name].setAttribute('aria-describedby', 'reg-' + name + '-error');
+      else fields[name].removeAttribute('aria-describedby');
+      if (el) el.textContent = message || '';
+    }
+
+    function selectedCountry() {
+      return countries.find((country) => country.iso === countrySelect.value) || countries.find((country) => country.iso === 'US') || countries[0];
+    }
+
+    function normalizePhone(value) {
+      const trimmed = value.trim();
+      const digits = trimmed.replace(/\D/g, '');
+      if (!digits) return '';
+      if (trimmed.startsWith('+')) return '+' + digits;
+      const dial = selectedCountry().dial;
+      const local = digits.replace(/^0+/, '');
+      return '+' + dial + local;
+    }
+
+    function validate() {
+      let ok = true;
+      const fullName = fields.fullName.value.trim().replace(/\s+/g, ' ');
+      const email = fields.email.value.trim();
+      const phone = normalizePhone(fields.phone.value);
+      const businessName = fields.businessName.value.trim().replace(/\s+/g, ' ');
+
+      setFieldError('fullName', '');
+      setFieldError('email', '');
+      setFieldError('phone', '');
+      setFieldError('businessName', '');
+
+      if (fullName.length < 2 || fullName.length > 120) {
+        setFieldError('fullName', 'Enter your full name.');
+        ok = false;
+      }
+      if (!/^\S+@\S+\.\S+$/.test(email) || email.length > 254) {
+        setFieldError('email', 'Enter a valid email address.');
+        ok = false;
+      }
+      if (!/^\+[1-9]\d{6,14}$/.test(phone)) {
+        setFieldError('phone', 'Enter a valid phone number.');
+        ok = false;
+      }
+      if (businessName.length < 2 || businessName.length > 140) {
+        setFieldError('businessName', 'Enter your business name.');
+        ok = false;
+      }
+
+      return ok ? { fullName, email, phone, businessName } : null;
+    }
+
+    function focusable() {
+      return Array.from(dialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+    }
 
     function open(trigger) {
       lastFocus = trigger || document.activeElement;
-      backdrop.setAttribute('aria-hidden', 'false');
+      dialog.showModal();
       document.body.style.overflow = 'hidden';
-      const first = form.querySelector('input');
-      if (first) first.focus();
+      countrySelect.value = countrySelect.value || 'US';
+      fields.fullName.focus();
     }
 
     function close() {
-      backdrop.setAttribute('aria-hidden', 'true');
+      dialog.close();
       document.body.style.overflow = '';
-      errorEl.style.display = 'none';
+      errorEl.hidden = true;
       errorEl.textContent = '';
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
+    function trackLeadOnce() {
+      if (sessionStorage.getItem('reggieLeadTracked') === '1') return;
+      sessionStorage.setItem('reggieLeadTracked', '1');
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', { content_name: 'Lunch and Learn Registration' });
+      }
+    }
+
     document.addEventListener('click', function(e) {
       const trigger = e.target.closest('[data-register-trigger]');
-      if (trigger) { e.preventDefault(); open(trigger); return; }
-      if (e.target.closest('[data-register-close]')) { close(); return; }
-      if (e.target === backdrop) close();
+      if (trigger) {
+        e.preventDefault();
+        open(trigger);
+        return;
+      }
+      if (e.target.closest('[data-register-close]')) close();
     });
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && backdrop.getAttribute('aria-hidden') === 'false') close();
+    dialog.addEventListener('click', function(e) {
+      if (e.target === dialog) close();
+    });
+
+    dialog.addEventListener('cancel', function(e) {
+      e.preventDefault();
+      close();
+    });
+
+    dialog.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
+      const items = focusable();
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!first || !last) return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      errorEl.style.display = 'none';
+      errorEl.hidden = true;
+      const payload = validate();
+      if (!payload) return;
+
       submitBtn.disabled = true;
       const originalLabel = submitBtn.textContent;
       submitBtn.textContent = 'Registering...';
-
-      const data = Object.fromEntries(new FormData(form).entries());
 
       try {
         const res = await fetch('/api/register', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(data),
+          body: JSON.stringify(payload),
         });
         const body = await res.json().catch(() => ({ ok: false, error: 'Bad response' }));
         if (res.ok && body.ok) {
-          window.location.href = '/lunch-and-learn-strategy-thank-you';
+          trackLeadOnce();
+          window.location.assign(thankYouPath);
           return;
         }
         throw new Error(body.error || 'Registration failed. Please try again.');
       } catch (err) {
         errorEl.textContent = err.message || 'Something went wrong.';
-        errorEl.style.display = 'block';
+        errorEl.hidden = false;
         submitBtn.disabled = false;
         submitBtn.textContent = originalLabel;
       }

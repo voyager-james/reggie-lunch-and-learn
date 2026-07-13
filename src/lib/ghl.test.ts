@@ -6,7 +6,7 @@ describe('createGhlContact', () => {
     apiKey: 'test-key',
     baseUrl: 'https://services.leadconnectorhq.com',
     locationId: 'loc_123',
-    tag: 'reggie-lunch-and-learn',
+    tag: 'lunch and learn: registered',
   };
 
   const payload = {
@@ -47,7 +47,7 @@ describe('createGhlContact', () => {
       phone: '+19105550123',
       companyName: 'Example Services',
       locationId: 'loc_123',
-      tags: ['reggie-lunch-and-learn'],
+      tags: ['lunch and learn: registered'],
     });
   });
 

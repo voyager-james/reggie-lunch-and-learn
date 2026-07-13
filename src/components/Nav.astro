@@ -1,6 +1,7 @@
 ---
-import { webinar } from '../config/webinar';
 import RegisterButton from './RegisterButton.astro';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/reggie/actioncoach-logo.png';
 
 interface Props {
   showCta?: boolean;
@@ -9,26 +10,47 @@ interface Props {
 const { showCta = true } = Astro.props;
 ---
 <header class={`nav${showCta ? '' : ' nav--centered'}`}>
+  <div class="nav-promo">
+    <div class="nav-promo__inner">30-Day Business Owner Mastery <span aria-hidden="true">❯❯</span></div>
+  </div>
   <div class="nav-inner">
     <a href="/lunch-and-learn" class="nav-brand" aria-label="ActionCOACH Lunch and Learn">
-      <img
-        src={webinar.logoImage}
-        alt="ActionCOACH"
+      <Image
+        src={logoImage}
+        alt=""
         class="nav-logo"
-        width="1003"
-        height="248"
+        widths={[121, 170, 242]}
+        sizes="(max-width: 600px) 121px, 170px"
+        loading="eager"
         decoding="async"
       />
+      <span class="nav-wordmark" aria-hidden="true"><strong>ACTION</strong><strong>COACH</strong></span>
     </a>
-    {showCta && <RegisterButton size="sm" />}
+    {showCta && <RegisterButton label="Reserve Your Seat" size="sm" />}
   </div>
 </header>
 
 <style is:global>
+  .nav-brand {
+    gap: 0.35rem;
+  }
+
   .nav-logo {
     display: block;
+    flex: 0 0 auto;
     height: 42px;
-    width: auto;
+    width: 170px;
+    object-fit: contain;
+  }
+
+  .nav-wordmark {
+    display: grid;
+    color: #1e1e1e;
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 0.78;
+    letter-spacing: -0.08em;
   }
 
   .nav--centered .nav-inner {
@@ -38,6 +60,11 @@ const { showCta = true } = Astro.props;
   @media (max-width: 600px) {
     .nav-logo {
       height: 30px;
+      width: 121px;
+    }
+
+    .nav-wordmark {
+      font-size: 0.95rem;
     }
   }
 </style>

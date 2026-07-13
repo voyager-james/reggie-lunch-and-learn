@@ -1,23 +1,34 @@
 ---
 import Countdown from './Countdown.astro';
 import RegisterButton from './RegisterButton.astro';
+import YouTubeFacade from './YouTubeFacade.astro';
+import ListIcon from './ListIcon.astro';
 import { webinar } from '../config/webinar';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/reggie/actioncoach-logo.png';
+import boardroomImage from '../assets/images/reggie/boardroom.jpg';
+import masteryPosterImage from '../assets/images/reggie/mastery-poster.png';
+import reggieHeadshotImage from '../assets/images/reggie/reggie-headshot.png';
+import darkRoomBg from '../assets/images/reggie/backgrounds/dark-room-bg.webp';
+import groupPhotoImage from '../assets/images/reggie/backgrounds/group-photo.webp';
+import heroStageBg from '../assets/images/reggie/backgrounds/hero-stage-bg.webp';
+import yellowBg from '../assets/images/reggie/backgrounds/yellow-bg.webp';
 
 const painPoints = [
   'Revenue has grown, but so has the complexity',
   'Your team still depends on you for everything',
   'Growth feels harder now than it used to',
   "You can't step away without things slipping",
-  "You know the business has more potential - but you're not sure what needs to change first",
+  "You know the business has more potential — but you're not sure what needs to change first",
 ];
 
 const walkAwayPoints = [
-  'A clearer understanding of what has been holding your business back',
+  'A clearer understanding of what is keeping your business stuck',
+  'A notebook full of practical action items to improve your business',
   'Greater clarity on what needs to happen next',
-  'A stronger grasp of how to grow with more structure and certainty',
-  'Exposure to a proven business building system',
-  'Mentality shifts required for serious leaders',
-  'A room full of growth-minded business owners',
+  'Exposure to a proven business-building system',
+  'A stronger grasp of how to grow with more acceleration and certainty',
+  'Weekly coaching support to reduce overwhelm and keep you moving',
   'Access to peer collaboration with other growth-minded business owners',
 ];
 
@@ -66,9 +77,10 @@ const notFitPoints = [
 ];
 
 const lunchLearnOutcomes = [
-  'What it will take to become more of an owner if you want to operate like a real one',
+  'Where you may be the bottleneck in your business',
   'Why growth gets harder at certain stages',
   'What keeps owners stuck',
+  'What needs to change for the next level of growth',
   'Whether 30-Day Business Owner Mastery is the right fit for you',
 ];
 
@@ -76,7 +88,7 @@ const faqs = [
   {
     question: 'How much time will this take?',
     answer:
-      'Plan on 30-45 minutes per day for 30 days. The lessons are video on demand, so you can complete them on your schedule.',
+      'Plan on 30–45 minutes per day for 30 days. The lessons are video on demand, so you can complete them on your schedule.',
   },
   {
     question: 'What if I miss a day?',
@@ -99,57 +111,45 @@ const faqs = [
 ];
 ---
 <main class="reggie-page">
-  <section class="hero-clone">
+  <section
+    class="hero-clone"
+    style={`--hero-bg: url(${heroStageBg.src}); --yellow-bg: url(${yellowBg.src}); --room-bg: url(${groupPhotoImage.src});`}
+  >
     <div class="container hero-clone__inner">
-      <div class="hero-clone__card">
-        <img
-          src={webinar.logoImage}
+      <div class="hero-clone__copy">
+        <Image
+          src={logoImage}
           alt="ActionCOACH logo"
           class="hero-clone__logo"
-          width="300"
-          height="88"
+          widths={[96, 140, 180]}
+          sizes="(max-width: 720px) 96px, 140px"
           loading="eager"
           decoding="async"
         />
+        <p class="hero-clone__eyebrow">30-DAY BUSINESS OWNER MASTERY</p>
         <h1>You've Grown Your Business. Now You Need to Grow the Owner Running It.</h1>
         <p class="hero-clone__lead">
           A practical 30-day intensive for business owners who have outgrown their current way of operating and are ready to break through to the next level.
         </p>
-        <div class="hero-clone__media-frame">
-          <span class="hero-clone__sound">Enable sound</span>
-          <img
-            src={webinar.heroVideoPoster}
-            alt="Business owners gathered around a boardroom table"
-            width="1920"
-            height="1080"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </div>
         <RegisterButton label="Register for Lunch and Learn" size="sm" />
-        <p class="hero-clone__small">
-          If your business is doing between $500K and $5M in annual revenue, there is a good chance you are no longer limited by effort alone.
-        </p>
-        <p class="hero-clone__small">
-          You are limited by the way the business is being led, managed, and operated.
-        </p>
-        <p class="hero-clone__small">
-          30-Day Business Owner Mastery is a free 30-day business growth intensive designed to help ambitious owners stop being the bottleneck, learn a proven operating system, and build a stronger business with more clarity, structure, and control.
-        </p>
       </div>
 
-      <div class="hero-clone__figure">
-        <img
-          src={webinar.heroCoachImage}
-          alt="Reggie Shropshire speaking on stage"
-          width="3780"
-          height="1890"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
+      <div class="hero-clone__media-frame" aria-label="Program overview video">
+        <YouTubeFacade />
       </div>
+    </div>
+  </section>
+
+  <section class="hero-support-strip" aria-label="Program summary">
+    <div class="container hero-support-strip__inner">
+      <p>
+        <span aria-hidden="true">❯❯</span>
+        If your business is doing between $500K and $5M in annual revenue, there is a good chance you are no longer limited by effort alone. You are limited by the way the business is being led, managed, and operated.
+      </p>
+      <p>
+        <span aria-hidden="true">❯❯</span>
+        30-Day Business Owner Mastery is a free 30-day business growth intensive designed to help ambitious owners stop being the bottleneck, learn a proven operating system, and build a stronger business with more clarity, structure, and control.
+      </p>
     </div>
   </section>
 
@@ -157,18 +157,22 @@ const faqs = [
     <div class="container">
       <p class="date-strip__label">Event starts in</p>
       <Countdown />
-      <p class="date-strip__date">{webinar.date}</p>
+      <div class="date-strip__details">
+        <p><span>Date</span>{webinar.date}</p>
+        <p><span>Time</span>{webinar.timeEastern} ET</p>
+        <p><span>Location</span>{webinar.venue}<small>{webinar.venueAddress}</small></p>
+      </div>
     </div>
   </section>
 
   <section class="section-clone section-clone--white white-diamonds">
     <div class="container truth-layout">
       <div class="truth-layout__media">
-        <img
-          src="/images/reggie/boardroom.jpg"
+        <Image
+          src={boardroomImage}
           alt="Business meeting around a table"
-          width="1920"
-          height="1080"
+          widths={[320, 480, 720, 960]}
+          sizes="(max-width: 720px) calc(100vw - 32px), 500px"
           loading="lazy"
           decoding="async"
         />
@@ -178,15 +182,16 @@ const faqs = [
         </div>
       </div>
       <div class="truth-layout__copy">
-        <h2>What Got You Here Won't Get You There.</h2>
+        <h2>What Got You Here Won’t Get You There.</h2>
         <p>
           Most business owners do not get stuck because they stop working hard. They get stuck because the skills, habits, and mindset that got them to this level will not take them where they want to go next.
         </p>
         <p>At some point, your strengths stop covering for your weaknesses.</p>
         <p>At some point, your team feels the drag of your constraints.</p>
         <p>At some point, the business you built starts demanding a different kind of owner.</p>
+        <p>If any of this sounds familiar, you are not alone:</p>
         <ul class="yellow-bullets">
-          {painPoints.map((point) => <li>{point}</li>)}
+          {painPoints.map((point) => <li><ListIcon />{point}</li>)}
         </ul>
       </div>
     </div>
@@ -199,15 +204,14 @@ const faqs = [
         30-Day Business Owner Mastery is built to help you make that shift.
       </p>
       <p>
-        In just 30-45 minutes a day for 30 days, you will be exposed to the principles, practices, and processes that help business owners build a better business using the ActionCOACH Business Operating System (ABoS) - a methodology used for more than 30 years with hundreds of thousands of businesses around the world.
+        In just 30–45 minutes a day for 30 days, you will be exposed to the principles, practices, and processes that help business owners build a better business using the ActionCOACH Business Operating System (ABoS)— a methodology used for more than 30 years with hundreds of thousands of businesses around the world.
       </p>
       <ul class="yellow-bullets">
-        <li>This is not theory.</li>
-        <li>This is practical growth.</li>
-        <li>
-          It is a structured, practical growth experience designed to help you think differently, operate differently, and grow differently.
-        </li>
+        <li><ListIcon />This is not fluff.</li>
+        <li><ListIcon />This is not theory for theory’s sake.</li>
+        <li><ListIcon />This is not “just coaching.”</li>
       </ul>
+      <p>It is a structured, practical growth experience designed to help you think differently, operate differently, and grow differently.</p>
       <RegisterButton label="Register for Lunch and Learn" size="sm" />
     </div>
   </section>
@@ -215,7 +219,7 @@ const faqs = [
   <section class="section-clone section-clone--dark walkaway">
     <div class="container">
       <div class="section-heading-clone">
-        <h2>What You'll Walk Away With</h2>
+        <h2>What You’ll Walk Away With</h2>
       </div>
       <div class="walkaway-grid">
         {walkAwayPoints.map((item, index) => (
@@ -226,15 +230,20 @@ const faqs = [
           </article>
         ))}
       </div>
+      <div class="walkaway-quote">
+        <p>Many owners leave saying the same thing:</p>
+        <p>“I wish I had learned this before I started my business.”</p>
+      </div>
     </div>
   </section>
 
   <section class="section-clone section-clone--white learn-block white-diamonds">
     <div class="container">
       <div class="section-heading-clone section-heading-clone--center section-heading-clone--dark-text">
-        <h2>What You'll Learn</h2>
+        <h2>What You’ll Learn</h2>
         <p>This intensive covers the key drivers of business growth, including:</p>
       </div>
+      <p class="learn-grid__label">Focus Areas</p>
       <div class="learn-grid">
         {learnings.map((item) => (
           <div class="learn-grid__item">{item}</div>
@@ -249,34 +258,35 @@ const faqs = [
     </div>
   </section>
 
-  <section class="section-clone coach-band">
+  <section class="section-clone coach-band" style={`--hero-bg: url(${darkRoomBg.src});`}>
     <div class="container coach-band__inner">
       <div class="coach-band__photo">
-        <img
-          src={webinar.coachPortraitImage}
+        <Image
+          src={reggieHeadshotImage}
           alt="Portrait of Reggie Shropshire"
-          width="3780"
-          height="1890"
+          widths={[320, 480, 640, 900]}
+          sizes="(max-width: 720px) calc(100vw - 32px), 470px"
           loading="lazy"
           decoding="async"
         />
       </div>
       <div class="coach-band__copy">
         <h2>Meet Your Head Coach: Reggie Shropshire</h2>
+        <p>Hall of Fame ActionCOACH</p>
         <p>20 Year ActionCOACH Partner, US Marine Corps Veteran, and award-winning business leader.</p>
         <ul class="yellow-bullets">
-          <li>2025 Inductee into the ActionCOACH Global Hall of Fame</li>
-          <li>Expert in Sales, Management, Leadership, Systems, and Team Performance</li>
-          <li>Reggie's focus: Spotting the bottlenecks holding a business back, and building a clear path through them.</li>
+          <li><ListIcon />2025 Inductee into the ActionCOACH Global Hall of Fame</li>
+          <li><ListIcon />Expert in Sales, Management, Leadership, Systems, and Team Performance</li>
+          <li><ListIcon />Reggie's focus: Spotting the bottlenecks holding a business back, and building a clear path through them.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="section-clone catch-strip">
+  <section class="section-clone catch-strip" style={`--yellow-bg: url(${yellowBg.src});`}>
     <div class="container catch-strip__inner">
-      <h2>What's the Catch?</h2>
-      <p>There isn't one.</p>
+      <h2>What’s the Catch?</h2>
+      <p>There isn’t one.</p>
       <p>
         Reggie offers this because he's confident that the owners who experience it will want to go further. When they do, he's the obvious person to help them.
       </p>
@@ -285,7 +295,7 @@ const faqs = [
       </p>
       <p>We are covering the cost of the training, the coaching, and the system.</p>
       <p>
-        Your investment is your commitment: 30-45 minutes a day for 30 days, a willingness to learn, and the discipline to stay engaged.
+        Your investment is your commitment: 30–45 minutes a day for 30 days, a willingness to learn, and the discipline to stay engaged.
       </p>
       <p>
         And yes, if you experience the value and want help implementing what you learn, there will be opportunities to continue through our 1-to-1 coaching, group coaching, or 12-week training programs.
@@ -298,11 +308,11 @@ const faqs = [
   <section class="section-clone section-clone--white why-different">
     <div class="container why-different__inner">
       <div class="why-different__media">
-        <img
-          src={webinar.masteryPosterImage}
+        <Image
+          src={masteryPosterImage}
           alt="30-Day Business Owner Mastery visual"
-          width="3780"
-          height="1890"
+          widths={[320, 480, 640, 900]}
+          sizes="(max-width: 720px) calc(100vw - 32px), 350px"
           loading="lazy"
           decoding="async"
         />
@@ -311,9 +321,9 @@ const faqs = [
         <h2>Why This Is Different</h2>
         <p>There is no shortage of advice for business owners.</p>
         <p>But most of it falls into one of two categories:</p>
-        <ul class="yellow-bullets yellow-bullets--dark">
-          <li>Theory with no implementation</li>
-          <li>Motivation with no system</li>
+        <ul class="yellow-bullets yellow-bullets--dark cross-list">
+          <li><ListIcon kind="cross" />Theory with no implementation</li>
+          <li><ListIcon kind="cross" />Motivation with no system</li>
         </ul>
       </div>
     </div>
@@ -322,7 +332,7 @@ const faqs = [
       <h3>30-Day Business Owner Mastery is different.</h3>
       <p>You are getting:</p>
       <ul class="yellow-bullets yellow-bullets--dark">
-        {differentiators.map((item) => <li>{item}</li>)}
+        {differentiators.map((item) => <li><ListIcon />{item}</li>)}
       </ul>
       <div class="owner-mastery__cta">
         <RegisterButton label="Register for Lunch and Learn" size="sm" />
@@ -333,20 +343,20 @@ const faqs = [
   <section class="section-clone owners-fit">
     <div class="container">
       <div class="section-heading-clone section-heading-clone--center light-text">
-      <p class="mini-label">Who this is for</p>
+      <p class="mini-label">Who This Is For</p>
       <h2>This is for business owners who:</h2>
       </div>
       <div class="owners-fit__grid">
         <article class="fit-card">
           <h3>This is for business owners who:</h3>
           <ul class="fit-list fit-list--yes">
-            {fitPoints.map((item) => <li>{item}</li>)}
+            {fitPoints.map((item) => <li><ListIcon />{item}</li>)}
           </ul>
         </article>
         <article class="fit-card">
           <h3>This is not for someone looking for a quick fix.</h3>
           <ul class="fit-list fit-list--no">
-            {notFitPoints.map((item) => <li>{item}</li>)}
+            {notFitPoints.map((item) => <li><ListIcon kind="cross" />{item}</li>)}
           </ul>
         </article>
       </div>
@@ -371,11 +381,11 @@ const faqs = [
     </div>
   </section>
 
-  <section class="section-clone room-block">
+  <section class="section-clone room-block" style={`--room-bg: url(${groupPhotoImage.src});`}>
     <div class="container section-heading-clone section-heading-clone--center light-text">
-      <h2>More Than Training - A Room Full of The Right People</h2>
+      <h2>More Than Training—A Room Full of the Right People</h2>
       <p>One of the things business owners often say during this experience is:</p>
-      <p class="room-block__quote">"I found my people."</p>
+      <p class="room-block__quote">“I found my people.”</p>
       <p>
         When you get in a room with other owners who are ambitious, committed, and serious about growth, something changes. You stop feeling isolated. You stop normalizing your frustrations. You start seeing what is possible. That is part of the value of this experience.
       </p>
@@ -393,18 +403,19 @@ const faqs = [
       </div>
 
       <div class="start-card">
-        <img
-          src={webinar.masteryPosterImage}
+        <Image
+          src={masteryPosterImage}
           alt="30-Day Business Owner Mastery event graphic"
-          width="3780"
-          height="1890"
+          widths={[320, 480, 640]}
+          sizes="(max-width: 720px) calc(100vw - 32px), 330px"
           loading="lazy"
           decoding="async"
         />
         <div class="start-card__content">
-          <h3>"Lunch is on us."</h3>
+          <h3>Lunch is on us.</h3>
+          <p>You will leave with a clearer sense of:</p>
           <ul class="yellow-bullets">
-            {lunchLearnOutcomes.map((item) => <li>{item}</li>)}
+            {lunchLearnOutcomes.map((item) => <li><ListIcon />{item}</li>)}
           </ul>
           <RegisterButton label="Reserve Your Seat at the Free Lunch & Learn" size="sm" />
         </div>
@@ -434,7 +445,7 @@ const faqs = [
       <p class="mini-label">A Better Business Starts with</p>
       <h2>A Better Owner.</h2>
       <p>
-        If you know your business is capable of more-but you also know the way you are operating today will not get you there-this is your invitation.
+        If you know your business is capable of more—but you also know the way you are operating today will not get you there—this is your invitation.
       </p>
       <p>
         30-Day Business Owner Mastery was built for serious owners who are ready to stop guessing, stop spinning, and start building the next version of their business with intention.

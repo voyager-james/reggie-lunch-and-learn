@@ -12,18 +12,15 @@ export const webinar = {
   timeEastern: '11:45 am - 1:15 pm',
   startsAtIso: '2026-08-20T11:45:00-04:00',
   venue: 'Landfall Country Club',
+  venueAddress: '800 Sun Runner Place, Wilmington, NC 28405',
   locationLabel: 'Wilmington, NC',
-  thankYouPath: '/lunch-and-learn-strategy-thank-you',
-  ghlTag: 'reggie-lunch-and-learn',
-  heroVideoPoster: '/images/reggie/boardroom.jpg',
-  heroCoachImage: '/images/reggie/hero-stage.png',
-  coachPortraitImage: '/images/reggie/reggie-headshot.png',
-  masteryPosterImage: '/images/reggie/mastery-poster.png',
-  logoImage: '/images/reggie/actioncoach-logo.png',
+  thankYouPath: '/lunch-and-learn-thank',
+  ghlTag: 'lunch and learn: registered',
+  youtubeId: '19_vnBxi2QQ',
   business: {
     name: '30-Day Business Owner Mastery',
     tagline: 'The next level of business requires the next level of owner.',
-    footer: '(c) 2026 Reggie Shropshire | ActionCOACH | Wilmington, NC',
+    footer: '© 2026 Reggie Shropshire · ActionCOACH · Wilmington, NC',
   },
   form: {
     fields: [
