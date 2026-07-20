@@ -72,9 +72,9 @@ body {
 }
 
 .nav-logo {
-  width: 74px !important;
+  width: 118px !important;
   height: 68px !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center;
 }
 
@@ -522,7 +522,7 @@ body {
   }
 
   .nav-logo {
-    width: 50px !important;
+    width: 78px !important;
     height: 45px !important;
   }
 
@@ -651,12 +651,8 @@ body {
 }
 
 .nav-logo {
-  width: 52px !important;
-  height: 48px !important;
-}
-
-.nav-wordmark {
-  font-size: 1.15rem !important;
+  width: 96px !important;
+  height: 55px !important;
 }
 
 .nav .btn {
@@ -892,12 +888,8 @@ body {
   }
 
   .nav-logo {
-    width: 42px !important;
+    width: 66px !important;
     height: 38px !important;
-  }
-
-  .nav-wordmark {
-    font-size: 0.9rem !important;
   }
 
   .nav .btn {
@@ -1014,12 +1006,8 @@ body {
   }
 
   .nav-logo {
-    width: 2.4rem !important;
+    width: 3.8rem !important;
     height: 2.2rem !important;
-  }
-
-  .nav-wordmark {
-    font-size: 0.82rem !important;
   }
 
   .nav .btn {
@@ -1332,10 +1320,6 @@ body {
 }
 
 @media (max-width: 380px) {
-  .nav-wordmark {
-    display: none;
-  }
-
   .nav .btn {
     font-size: 0.7rem;
   }
